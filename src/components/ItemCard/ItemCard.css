@@ -1,0 +1,21 @@
+.card_wrapper {
+    width: 300px;
+    margin: 20px;
+}
+
+.card_content {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.gray_scale {
+    transition: all 0.3s ease-in-out;
+}
+
+.gray_scale:hover {
+    filter: grayscale(80%);
+    transition: all 0.3s ease-in-out;
+}
