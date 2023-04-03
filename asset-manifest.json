@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/tobaco/static/css/main.55997ae3.css",
-    "main.js": "/tobaco/static/js/main.d0db9a35.js",
-    "static/media/2.jpg": "/tobaco/static/media/2.87a46845a6c4a3a0e12a.jpg",
-    "static/media/4.jpg": "/tobaco/static/media/4.1ba4d6b4ce6ed20fdbd5.jpg",
-    "static/media/1.webp": "/tobaco/static/media/1.037d7549f4caa681f21e.webp",
-    "static/media/3.jpg": "/tobaco/static/media/3.4d5c661c6583f0753464.jpg",
-    "static/media/2.webp": "/tobaco/static/media/2.648c9766c52e281c6f83.webp",
-    "static/media/3.webp": "/tobaco/static/media/3.265e634c363965815b05.webp",
-    "static/media/4.webp": "/tobaco/static/media/4.8c845f0b5ca8ea738815.webp",
-    "index.html": "/tobaco/index.html",
-    "main.55997ae3.css.map": "/tobaco/static/css/main.55997ae3.css.map",
-    "main.d0db9a35.js.map": "/tobaco/static/js/main.d0db9a35.js.map"
+    "main.css": "/tobacco/static/css/main.55997ae3.css",
+    "main.js": "/tobacco/static/js/main.7fa8bd88.js",
+    "static/media/2.jpg": "/tobacco/static/media/2.87a46845a6c4a3a0e12a.jpg",
+    "static/media/4.jpg": "/tobacco/static/media/4.1ba4d6b4ce6ed20fdbd5.jpg",
+    "static/media/1.webp": "/tobacco/static/media/1.037d7549f4caa681f21e.webp",
+    "static/media/3.jpg": "/tobacco/static/media/3.4d5c661c6583f0753464.jpg",
+    "static/media/2.webp": "/tobacco/static/media/2.648c9766c52e281c6f83.webp",
+    "static/media/3.webp": "/tobacco/static/media/3.265e634c363965815b05.webp",
+    "static/media/4.webp": "/tobacco/static/media/4.8c845f0b5ca8ea738815.webp",
+    "index.html": "/tobacco/index.html",
+    "main.55997ae3.css.map": "/tobacco/static/css/main.55997ae3.css.map",
+    "main.7fa8bd88.js.map": "/tobacco/static/js/main.7fa8bd88.js.map"
   },
   "entrypoints": [
     "static/css/main.55997ae3.css",
-    "static/js/main.d0db9a35.js"
+    "static/js/main.7fa8bd88.js"
   ]
 }
