@@ -3,11 +3,14 @@ import { createTheme } from '@mui/material';
 const theme = createTheme({
     palette: {
         primary: {
-            main: '#b17862',
+            main: '#4a3d35',
+           // light: 'rgba(109,109,109)'
+
         },
         secondary: {
-            main: '#212121'
-        }
+            main: '#b17862',
+          //  dark: '#4a3d35'
+        },
     },
     typography: {
         fontFamily: `'Fira Sans', sans-serif`,

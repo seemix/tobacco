@@ -1,6 +1,6 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper';
+import { Autoplay, Navigation, Pagination } from 'swiper';
 import './Content.css';
 import i1 from './1.jpg'
 import i2 from './2.jpg'
@@ -11,7 +11,7 @@ import i5 from './4.webp';
 import ItemCard from '../ItemCard/ItemCard';
 
 const Content = () => {
-    const cards = [i1, i2, i3, i4, i5];
+    const cards = [i1, i2, i3, i4, i5, i1, i2, i3, i4, i5];
     return (
         <div className={'content_container'}>
             <div>
@@ -24,7 +24,7 @@ const Content = () => {
             <div className={'items_slider'}>
                 <Swiper
                     autoHeight={true}
-                    slidesPerView={1}
+                    slidesPerView={4}
                     spaceBetween={10}
                     breakpoints={{
                         '@0.00': {
@@ -49,13 +49,13 @@ const Content = () => {
                         },
                     }}
                     loop={true}
-                    loopFillGroupWithBlank={true}
-                    navigation={true}
-                    modules={[Pagination, Navigation]}
+                    autoplay={{ delay: 4500, disableOnInteraction: false, }}
+                    navigation={false}
+                    modules={[Autoplay, Pagination, Navigation]}
                     className={'item_slider'}
                 >
                     {
-                        cards.map((card) => <SwiperSlide><ItemCard key={card.image} image={card}/></SwiperSlide>)
+                        cards.map((card, index) => <SwiperSlide key={index}><ItemCard image={card}/></SwiperSlide>)
                     }
                 </Swiper>
             </div>

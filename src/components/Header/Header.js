@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import './Header.css';
 import logo from './tob2.png'
+import SearchBar from '../SearchBar/SearchBar';
+import LanguageSelect from '../LanguageSelect/LanguageSelect';
 
 const Header = () => {
+    const [show, setShow] = useState(false);
+    const handleClick = () => {
+        setShow(!show);
+    }
     return (
         <div className={'header_wrapper'}>
             <div className={'header_container'}>
@@ -16,8 +22,17 @@ const Header = () => {
                     <a href="#" className={'menu_link'}>Products</a>
                     <a href="#" className={'menu_link'}>Contacts</a>
                 </div>
+                {/*<LanguageSelect/>*/}
+                <div className="language-selector">
+                    <select defaultValue={'en'}>
+                        <option value="en">EN</option>
+                        <option value="da">DA</option>
+                        <option value="ru">RU</option>
+                    </select>
+                </div>
                 <div className={'icons_wrapper'}>
-                    <div>
+                    <div className={!show ? 'hide_element' : 'show_element'}><SearchBar setShow={setShow}/></div>
+                    <div onClick={handleClick} className={show ? 'hide_element' : 'show_element'}>
                         <svg
                             viewBox="0 0 1024 1024"
                             fill="currentColor"

@@ -1,4 +1,13 @@
 .slider_container {
-    max-height: calc(100vh);
+    margin-top: 70px;
+    max-height: calc(100vh - 70px);
     width: 100%;
+}
+
+.pic {
+    width: 100%;
+    height: calc(100vh - 70px);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }

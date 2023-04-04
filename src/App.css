@@ -6,12 +6,16 @@
   box-sizing: border-box;
 }
 a {
-  color:  #b17862;
+  color:  #212121;
   text-decoration: none;
+}
+a:hover {
+  color: #b17862;
 }
 body {
   font-family: 'Fira Sans', sans-serif;
   color: #212121;
+  background-color: rgba(240, 240, 240, 1);
 }
 
 h2,h3 {
@@ -20,4 +24,20 @@ h2,h3 {
 }
 p {
   margin: 15px 0;
+}
+.main_container {
+  min-height: 100vh;
+}
+.price_wrapper {
+  text-align: center;
+}
+.price {
+  color: #f84147;
+  font-size: 24px;
+}
+.old_price {
+  font-size: 20px;
+  color: #333333;
+  text-decoration: line-through;
+  margin-right: 10px;
 }

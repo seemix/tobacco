@@ -1,50 +1,115 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+
 .header_wrapper {
     width: 100%;
     box-sizing: border-box;
     height: 70px;
-    background-color: #faf9f9;
-    color: #b17862;
+    background-color: rgba(240, 240, 240, 1);
     align-items: center;
     font-family: 'Oswald', sans-serif;
-    -webkit-box-shadow: 0 3px 5px 0 rgba(143,139,143,0.24);
-    -moz-box-shadow: 0 3px 5px 0 rgba(143,139,143,0.24);
-    box-shadow: 0 3px 5px 0 rgba(143,139,143,0.24);
+    -webkit-box-shadow: 0 3px 5px 0 rgba(143, 139, 143, 0.24);
+    -moz-box-shadow: 0 3px 5px 0 rgba(143, 139, 143, 0.24);
+    box-shadow: 0 3px 5px 0 rgba(143, 139, 143, 0.24);
     position: fixed;
+    top: 0;
     z-index: 50;
 
 }
+
 .header_container {
     display: flex;
     justify-content: space-evenly;
     gap: 15px;
     align-items: center;
 }
+
 .menu_wrapper {
     margin-top: 3px;
     display: flex;
 }
+
 .menu_link {
     font-size: 17px;
     font-weight: 500;
     margin: 15px 20px;
     padding-bottom: 15px;
     text-transform: uppercase;
+    color: rgba(109, 109, 109);
+    letter-spacing: 1px;
 }
+
 .menu_link:hover {
     border-bottom: 1px solid #b17862;
 }
+
 svg:hover {
     fill: #b17862;
 }
+
 svg {
     fill: darkgray;
 }
+
 .icons_wrapper {
     display: flex;
-    gap: 20px;
+    gap: 30px;
+    width: 200px;
 }
-.swiper-button-next, .swiper-button-prev { color: whitesmoke; }
+
+.swiper-button-next, .swiper-button-prev {
+    color: whitesmoke;
+}
+
 .swiper-pagination-bullet-active {
     background-color: whitesmoke !important;
+}
+
+.language-selector {
+    font-family: 'Oswald', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.language-selector select {
+    padding: 10px;
+    background-color: #f2f2f2;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 0;
+    color: rgba(109, 109, 109);
+}
+
+.language-selector select option {
+    background-color: #f2f2f2;
+    color: #333;
+    font-size: 16px;
+}
+
+.language-selector select option:hover {
+    background-color: #ccc;
+}
+
+.language-selector select option:checked {
+    background-color: #333;
+    color: #fff;
+}
+
+.hide_element {
+    display: none;
+    transition: linear fade 1s;
+}
+
+.show_element {
+    display: block;
+    animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }

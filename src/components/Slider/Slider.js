@@ -19,7 +19,6 @@ const Slider = () => {
     return (
         <div className={'slider_container'}>
             <Swiper
-                height={1000}
                 spaceBetween={30}
                 slidesPerView={1}
                 autoplay={{
@@ -27,7 +26,6 @@ const Slider = () => {
                     disableOnInteraction: false,
                 }}
                 effect={'fade'}
-               // navigation={true}
                 pagination={{
                     clickable: true,
                 }}
@@ -36,13 +34,13 @@ const Slider = () => {
                 loop={true}
             >
                 <SwiperSlide>
-                    <img src={slide1} alt={'sl1'}/>
+                    <div style={{backgroundImage: `url(${slide1})`}} className={'pic'}></div>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src={slide2}  alt={'sl2'}/>
+                    <div style={{backgroundImage: `url(${slide2})`}} className={'pic'}></div>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src={slide3}  alt={'sl3'}/>
+                    <div style={{backgroundImage: `url(${slide3})`}} className={'pic'}></div>
                 </SwiperSlide>
             </Swiper>
         </div>

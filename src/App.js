@@ -7,7 +7,7 @@ import { ThemeProvider } from '@mui/material';
 
 function App() {
     return (
-        <div>
+        <div className={'main_container'}>
             <ThemeProvider theme={theme}>
                 <Header/>
                 <Slider/>
