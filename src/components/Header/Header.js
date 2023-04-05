@@ -17,6 +17,7 @@ const Header = () => {
 
     const handleClick = () => {
         setShow(!show);
+        setOpenMenu(false);
     }
     const setLanguage = (lang) => {
         setLang(lang);
