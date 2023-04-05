@@ -4,7 +4,7 @@ import SearchIcon from '@mui/icons-material/Search';
 
 const SearchBar = ({setShow}) => {
     return (
-        <div>
+        <div className={'search_wrapper'}>
             <TextField
                 id="search"
                 type="search"
