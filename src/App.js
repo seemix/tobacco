@@ -1,8 +1,9 @@
 import './App.css';
-import Main from './components/Main/Main';
-import theme from './themes/theme';
 import { ThemeProvider } from '@mui/material';
 import { Route, Routes } from 'react-router-dom';
+
+import Main from './components/Main/Main';
+import theme from './themes/theme';
 import About from './components/About/About';
 import Contacts from './components/Contacts/Contacts';
 import Layout from './components/Layout/Layout';

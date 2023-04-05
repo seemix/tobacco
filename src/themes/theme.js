@@ -11,6 +11,11 @@ const theme = createTheme({
             main: '#b17862',
           //  dark: '#4a3d35'
         },
+        background: {
+            //default: 'whitesmoke',
+            paper: 'rgba(246,246,246)'
+        },
+
     },
     typography: {
         fontFamily: `'Fira Sans', sans-serif`,
