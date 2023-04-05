@@ -1,5 +1,5 @@
 import './App.css';
-import Main from './components/Content/Main';
+import Main from './components/Main/Main';
 import theme from './themes/theme';
 import { ThemeProvider } from '@mui/material';
 import { Route, Routes } from 'react-router-dom';

@@ -36,9 +36,9 @@ const Header = () => {
             </div>
             <nav className={!openedMenu ? 'menu_wrapper' : 'menu_wrapper show_menu'}>
                 <ul>
-                    <li><NavLink to={'/'}>Home</NavLink></li>
-                    <li><NavLink to={'/about'}>About us</NavLink></li>
-                    <li><NavLink to={'/contacts'}>Contacts</NavLink></li>
+                    <li><NavLink to={'/'} onClick={() => dispatch(closeMenu())}>Home</NavLink></li>
+                    <li><NavLink to={'/about'} onClick={() => dispatch(closeMenu())}>About us</NavLink></li>
+                    <li><NavLink to={'/contacts'} onClick={() => dispatch(closeMenu())}>Contacts</NavLink></li>
                     <li><a href="#" className={'menu_parent'}>Products <i className={'arrow_right'}></i> </a>
                         <ul>
                             <li><a href="#">Category1</a></li>
