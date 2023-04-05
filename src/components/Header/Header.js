@@ -9,6 +9,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import SearchIcon from './SearchIcon';
 import CartIcon from './CartIcon';
 import { closeMenu, openMenu, setLanguage, showHideItem } from '../../store/appearance';
+import { NavLink } from 'react-router-dom';
 
 const Header = () => {
     const { openedMenu, showElement, language, filteredLang } = useSelector(state => state.appearanceStore);
@@ -35,9 +36,9 @@ const Header = () => {
             </div>
             <nav className={!openedMenu ? 'menu_wrapper' : 'menu_wrapper show_menu'}>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About us</a></li>
-                    <li><a href="#">Contacts</a></li>
+                    <li><NavLink to={'/'}>Home</NavLink></li>
+                    <li><NavLink to={'/about'}>About us</NavLink></li>
+                    <li><NavLink to={'/contacts'}>Contacts</NavLink></li>
                     <li><a href="#" className={'menu_parent'}>Products <i className={'arrow_right'}></i> </a>
                         <ul>
                             <li><a href="#">Category1</a></li>
