@@ -9,11 +9,12 @@ const SearchBar = ({setShow}) => {
                 id="search"
                 type="search"
                 label="Search"
+                //fullWidth
                 // value={'search'}
                 size={'small'}
                 placeholder={'type to search'}
                 //onChange={handleChange}
-                sx={{ width: 300 }}
+               // sx={{ width: 500 }}
                 InputProps={{
                     endAdornment: (
                         <InputAdornment position="end">
