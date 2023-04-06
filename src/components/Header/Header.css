@@ -45,13 +45,13 @@
     position: relative;
     float: left;
     margin: 0;
+    height: 50px;
 }
 
 .menu_wrapper ul li a {
     font-size: 17px;
     font-weight: 500;
     margin: 0 20px;
-    /*padding-bottom: 10px;*/
     text-transform: uppercase;
     color: rgba(109, 109, 109);
     letter-spacing: 1px;
@@ -62,7 +62,6 @@
 }
 
 .menu_wrapper ul li a:hover {
-    /*border-bottom: 1px solid #b17862;*/
     color: #b17862;
 }
 
@@ -92,10 +91,6 @@
     padding: 10px;
 }
 
-.menu_wrapper ul li ul li a:hover,
-.menu_wrapper ul li ul li a:focus-within {
-    border-bottom: none;
-}
 
 .arrow_right {
     border: solid rgba(109, 109, 109);
@@ -107,11 +102,7 @@
     transition: 0.2s all ease-in-out;
 }
 
-.menu_parent:hover {
-    border-bottom: 0;
-}
-
-.menu_wrapper ul li a:hover > i {
+.menu_wrapper ul li:hover a > i {
     transform: rotate(45deg);
     transition: 0.2s all ease-in-out;
 }
@@ -131,9 +122,6 @@
     width: 300px;
 }
 
-.swiper-button-next, .swiper-button-prev {
-    color: whitesmoke;
-}
 
 .swiper-pagination-bullet-active {
     background-color: whitesmoke !important;
@@ -190,8 +178,9 @@
         display: flex;
         flex-direction: column;
         background-color: rgba(240, 240, 240, 1);
-        padding-top: 20px;
-        gap: 15px
+        padding: 5px 0;
+        gap: 15px;
+        box-sizing: border-box;
     }
 
     .menu_wrapper ul li ul {
@@ -204,12 +193,18 @@
         visibility: hidden;
         transition: all .5s ease;
         z-index: 1;
+        padding-top: 25px;
+
     }
 
     .menu_wrapper ul li a:hover {
         border-bottom: 0;
     }
 
+    .menu_wrapper ul li ul li {
+        padding: 5px 0;
+        box-sizing: border-box;
+    }
     .menu_wrapper ul li:hover > ul,
     .menu_wrapper ul li:focus-within > ul {
         opacity: 1;
@@ -219,7 +214,6 @@
     .menu_wrapper#lang {
         position: initial;
         top: 0;
-        margin-bottom: 20px;
     }
 
     .menu_wrapper#lang ul {
@@ -231,7 +225,11 @@
 
     .menu_wrapper#lang ul li {
         padding: 0;
-        margin-top: 10px;
+        /*margin-top: 10px;*/
+    }
+
+    .menu_wrapper#lang ul li ul {
+        margin-top: 20px;
     }
 
     .icons_wrapper {

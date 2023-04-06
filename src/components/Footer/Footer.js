@@ -3,7 +3,7 @@ import './Footer.css';
 const Footer = () => {
     return (
         <div className={'footer_wrapper'}>
-            <span>All rights reserved 2023</span>
+            <span>TOBACCO SHOP. All rights reserved 2023</span>
         </div>
     );
 };

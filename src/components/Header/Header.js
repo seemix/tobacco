@@ -58,7 +58,7 @@ const Header = () => {
             <nav id={'lang'} className={'menu_wrapper'} style={{ minWidth: '70px' }}>
                 <ul>
                     <li>
-                        <a href="#" className={'menu_parent'}>{language}<i className={'arrow_right'}></i> </a>
+                        <a href="#" className={'menu_parent'}>{language} <i className={'arrow_right'}></i></a>
                         <ul style={{ width: '80px' }}>
                             {
                                 filteredLang.map(item => <li style={{ borderBottom: 0 }} key={item}>

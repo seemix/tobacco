@@ -7,7 +7,7 @@ import './ItemCard.css';
 const ItemCard = ({ image, index }) => {
     return (
         <div className={'card_wrapper'}>
-            <Card className={'card'}>
+            <Card >
                 <CardMedia
                     className={'gray_scale'}
                     component={'img'}
