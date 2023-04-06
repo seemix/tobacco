@@ -51,7 +51,7 @@
     font-size: 17px;
     font-weight: 500;
     margin: 0 20px;
-    padding-bottom: 10px;
+    /*padding-bottom: 10px;*/
     text-transform: uppercase;
     color: rgba(109, 109, 109);
     letter-spacing: 1px;
@@ -62,7 +62,7 @@
 }
 
 .menu_wrapper ul li a:hover {
-    border-bottom: 1px solid #b17862;
+    /*border-bottom: 1px solid #b17862;*/
     color: #b17862;
 }
 

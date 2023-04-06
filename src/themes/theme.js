@@ -12,7 +12,7 @@ const theme = createTheme({
           //  dark: '#4a3d35'
         },
         background: {
-            paper: 'rgba(246,246,246)'
+            paper: 'rgba(248,248,248)'
         },
         text: {
             primary: '#4a3d35'

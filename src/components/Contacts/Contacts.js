@@ -21,7 +21,7 @@ const Contacts = () => {
 
                     <Card className={'card'}>
                         <div className={'card_inside'}>
-                            <div className={'icon_wrapper'}><PhoneAndroidIcon style={{ fontSize: '50px'}}/></div>
+                            <div className={'icon_wrapper'}><PhoneAndroidIcon style={{ fontSize: '50px', color: '#4a3d35'}}/></div>
                             <h2>PHONE</h2>
                             <big>
                                 <p>Toll-Free: 0803 - 080 - 3081</p>
@@ -30,14 +30,14 @@ const Contacts = () => {
                         </div>
                     </Card>
                     <Card  className={'card'}>
-                        <div className={'icon_wrapper'}><EmailIcon style={{ fontSize: '50px'}}/></div>
+                        <div className={'icon_wrapper'}><EmailIcon style={{ fontSize: '50px', color: '#4a3d35'}}/></div>
                         <h2>EMAIL</h2>
                         <big>
                             <p style={{textAlign:'center'}}>support@example.com</p>
                         </big>
                     </Card>
                     <Card  className={'card'}>
-                        <div className={'icon_wrapper'}><TelegramIcon style={{ fontSize: '50px'}}/></div>
+                        <div className={'icon_wrapper'}><TelegramIcon style={{ fontSize: '50px', color: '#4a3d35'}}/></div>
                         <h2>TELEGRAM</h2>
                         <big>
                             <p>Toll-Free: 0803 - 080 - 3081</p>

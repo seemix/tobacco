@@ -31,7 +31,7 @@ export const categorySlice = createSlice({
                 state.error = null;
                 state.categories = action.payload;
             })
-            .addCase(getAllCategories.rejected, (state,action) => {
+            .addCase(getAllCategories.rejected, (state, action) => {
                 state.status = 'error';
                 state.error = action.payload;
             })
