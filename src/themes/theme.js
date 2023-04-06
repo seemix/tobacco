@@ -12,9 +12,11 @@ const theme = createTheme({
           //  dark: '#4a3d35'
         },
         background: {
-            //default: 'whitesmoke',
             paper: 'rgba(246,246,246)'
         },
+        text: {
+            primary: '#4a3d35'
+        }
 
     },
     typography: {

@@ -2,11 +2,13 @@ import React from 'react';
 
 import './About.css';
 import { Card } from '@mui/material';
-
+import aboutImage from '../Slider/2.webp'
 const About = () => {
     return (
-        <div style={{ marginTop: '70px', height: '120vh' }}>
-            <div className={'image_container'}>
+        <div style={{ marginTop: '70px' }}>
+            <div className={'image_container'}
+                style={{backgroundImage: `url(${aboutImage})`}}
+            >
                 <div className={'image_overlay'}></div>
                 <h2>ABOUT US</h2>
             </div>

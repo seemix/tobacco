@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,11 +10,15 @@ import SearchIcon from './SearchIcon';
 import CartIcon from './CartIcon';
 import { closeMenu, openMenu, setLanguage, showHideItem } from '../../store/appearance';
 import { NavLink } from 'react-router-dom';
+import { getAllCategories } from '../../store/category';
 
 const Header = () => {
     const { openedMenu, showElement, language, filteredLang } = useSelector(state => state.appearanceStore);
+    const { categories } = useSelector(state => state.categoryStore);
     const dispatch = useDispatch();
-
+    useEffect(() => {
+        dispatch(getAllCategories());
+    }, [dispatch]);
     return (
         <div className={'header_wrapper'}>
             <div className={'burger_icon'}>
@@ -41,11 +45,11 @@ const Header = () => {
                     <li><NavLink to={'/contacts'} onClick={() => dispatch(closeMenu())}>Contacts</NavLink></li>
                     <li><a href="#" className={'menu_parent'}>Products <i className={'arrow_right'}></i> </a>
                         <ul>
-                            <li><a href="#">Category1</a></li>
-                            <li><a href="#">Category2</a></li>
-                            <li><a href="#">Category3</a></li>
-                            <li><a href="#">Category4</a></li>
-                            <li><a href="#">Category5</a></li>
+                            { categories &&
+                                categories.map(cat => <li key={cat.id}><NavLink
+                                    to={`category/${cat.id}`}>{cat.name}</NavLink></li>)
+                            }
+
                         </ul>
                     </li>
 

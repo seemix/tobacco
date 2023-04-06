@@ -4,7 +4,7 @@
     background-attachment: fixed;
     background-position: center center;
     background-size: cover;
-    background-image: url('../Slider/2.webp');
+    /*background-image: url('../Slider/2.webp');*/
     position: relative;
     background-position-y:10px;
 }
