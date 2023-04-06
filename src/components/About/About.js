@@ -13,7 +13,7 @@ const About = () => {
                 <h2>ABOUT US</h2>
             </div>
             <div className={'content_container'}>
-                <div className={'content_wrapper'}>
+                <div className={'content_wrapper'} style={{marginTop: '50px'}}>
                     <Card style={{padding: '20px'}}>
                         <div style={{ maxWidth: '500px' }}>
                             <big>

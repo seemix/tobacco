@@ -28,7 +28,7 @@ p {
   margin: 15px 0;
 }
 .main_container {
-  min-height: 100vh;
+  /*min-height: 100vh;*/
 }
 .price_wrapper {
   text-align: center;

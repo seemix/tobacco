@@ -17,7 +17,8 @@ const Contacts = () => {
                 <h2>CONTACTS</h2>
             </div>
             <div className={'content_container'}>
-                <div className={'content_wrapper'}>
+                <div className={'content_wrapper'} style={{marginTop: '50px'}}>
+
                     <Card className={'card'}>
                         <div className={'card_inside'}>
                             <div className={'icon_wrapper'}><PhoneAndroidIcon style={{ fontSize: '50px'}}/></div>
