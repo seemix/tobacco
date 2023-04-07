@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
+import Badge from '@mui/material/Badge';
 import { useDispatch, useSelector } from 'react-redux';
 
 import './Header.css';
@@ -45,7 +46,7 @@ const Header = () => {
                     <li><NavLink to={'/contacts'} onClick={() => dispatch(closeMenu())}>Contacts</NavLink></li>
                     <li><a href="#" className={'menu_parent'}>Products <i className={'arrow_right'}></i> </a>
                         <ul>
-                            { categories &&
+                            {categories &&
                                 categories.map(cat => <li key={cat.id}><NavLink
                                     to={`category/${cat.id}`}>{cat.name}</NavLink></li>)
                             }
@@ -71,7 +72,9 @@ const Header = () => {
             </nav>
             <div className={'icons_wrapper'}>
                 <div>
-                    <CartIcon/>
+                    <Badge badgeContent={2} color={'secondary'} style={{top: '3px'}}>
+                        <CartIcon/>
+                    </Badge>
                 </div>
                 <div className={!showElement ? 'hide_element' : 'show_element'}><SearchBar setShow={showElement}/></div>
                 <div onClick={() => dispatch(showHideItem())} className={showElement ? 'hide_element' : 'show_element'}>

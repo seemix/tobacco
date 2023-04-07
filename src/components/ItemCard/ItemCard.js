@@ -24,8 +24,8 @@ const ItemCard = ({ product }) => {
                     {/*    }</small>*/}
                     {/*</div>*/}
                     <div className={'price_wrapper'}>
-                        <span className={'old_price'}>${product.oldPrice}</span>
-                        <span className={'price'}>${product.price}</span>
+                        <span className={'old_price'}>{product.oldPrice} Kr.</span>
+                        <span className={'price'}>{product.price} Kr.</span>
                     </div>
                     <Button variant={'outlined'}>Read more</Button>
                     <Button variant={'contained'}>

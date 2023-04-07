@@ -13,6 +13,7 @@ const SearchBar = () => {
     return (
         <div className={'search_wrapper'}>
             <TextField
+                className={'TextField-without-border-radius'}
                 id="search"
                 type="search"
                 label="Search"

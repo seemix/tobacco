@@ -15,7 +15,7 @@ const About = () => {
             </div>
             <div className={'content_container'}>
                 <div className={'content_wrapper'} style={{ marginTop: '50px' }}>
-                    <Card style={{ padding: '20px' }}>
+                    <Card style={{ padding: '20px'}}>
                         <div style={{ maxWidth: '500px' }}>
                             <big>
                                 Quisque volutpat mattis eros. Nullam malesuada erat ut ki diaml ka dhuddu pochu turpis.
