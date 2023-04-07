@@ -1,45 +1,58 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap');
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  text-decoration: none;
-}
-a {
-  color:  #212121;
-  text-decoration: none;
-}
-a:hover {
-  color: #b17862;
-}
-body {
-  font-family: 'Fira Sans', sans-serif;
-  color: #4a3d35;
-  background-color: rgba(244, 244, 244, 1);
-  line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
 }
 
-h2,h3 {
-  text-align: center;
-  margin: 5px;
+a {
+    color: #212121;
+    text-decoration: none;
 }
+
+a:hover {
+    color: #b17862;
+}
+
+body {
+    font-family: 'Fira Sans', sans-serif;
+    color: #4a3d35;
+    background-color: rgba(244, 244, 244, 1);
+    line-height: 1.5;
+}
+
+h2, h3 {
+    text-align: center;
+    margin: 5px;
+}
+
 p {
-  margin: 15px 0;
+    margin: 15px 0;
 }
+
 .main_container {
-  /*min-height: 100vh;*/
+    margin: 0 auto;
+    padding-top: 80px;
+    display: flex;
+    max-width: 1500px;
+    justify-content: center;
+    flex-direction: column;
 }
+
 .price_wrapper {
-  text-align: center;
+    text-align: center;
 }
+
 .price {
-  color: #f84147;
-  font-size: 24px;
+    color: #f84147;
+    font-size: 24px;
 }
+
 .old_price {
-  font-size: 20px;
-  color: #333333;
-  text-decoration: line-through;
-  margin-right: 10px;
+    font-size: 20px;
+    color: #333333;
+    text-decoration: line-through;
+    margin-right: 10px;
 }

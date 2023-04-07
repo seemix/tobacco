@@ -2,17 +2,17 @@ import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Pagination } from 'swiper';
 import './Main.css';
-import i1 from './1.jpg'
-import i2 from './2.jpg'
-import i3 from './3.jpg'
-import i4 from './4.jpg'
-import i5 from './4.webp';
-
-import ItemCard from '../ItemCard/ItemCard';
 import Slider from '../Slider/Slider';
+import FakeItem from '../FakeItem/FakeItem';
 
 const Main = () => {
-    const cards = [i1, i2, i3, i4, i5, i1, i2, i3, i4, i5];
+    const cards = [
+        'https://www.pmi.com/resources/images/default-source/default-album/tobacco-economics-thumbnail.jpg?sfvrsn=b7ce42b4_2&imwidth=600&imdensity=1',
+        'https://www.pmi.com/resources/images/default-source/default-album/tobacco-economics-thumbnail.jpg?sfvrsn=b7ce42b4_2&imwidth=600&imdensity=1',
+        'https://www.pmi.com/resources/images/default-source/default-album/tobacco-economics-thumbnail.jpg?sfvrsn=b7ce42b4_2&imwidth=600&imdensity=1',
+        'https://www.pmi.com/resources/images/default-source/default-album/tobacco-economics-thumbnail.jpg?sfvrsn=b7ce42b4_2&imwidth=600&imdensity=1',
+        'https://www.pmi.com/resources/images/default-source/default-album/tobacco-economics-thumbnail.jpg?sfvrsn=b7ce42b4_2&imwidth=600&imdensity=1'
+    ];
     return (
         <>
             <Slider/>
@@ -59,7 +59,7 @@ const Main = () => {
                         className={'item_slider'}
                     >
                         {
-                            cards.map((card, index) => <SwiperSlide key={index}><ItemCard image={card}/></SwiperSlide>)
+                            cards.map((card, index) => <SwiperSlide key={index}><FakeItem image={card}/></SwiperSlide>)
                         }
                     </Swiper>
                 </div>

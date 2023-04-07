@@ -10,7 +10,9 @@
     flex-direction: column;
     gap: 15px;
 }
-
+.card_content h3 {
+    margin: 0;
+}
 .gray_scale {
     transition: all 0.3s ease-in-out;
 }

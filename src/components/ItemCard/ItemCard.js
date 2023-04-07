@@ -4,29 +4,31 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 import './ItemCard.css';
 
-const ItemCard = ({ image, index }) => {
+const ItemCard = ({ product }) => {
     return (
         <div className={'card_wrapper'}>
-            <Card >
+            <Card>
                 <CardMedia
                     className={'gray_scale'}
                     component={'img'}
-                    alt={image}
+                    alt={product.picture}
                     width="300"
                     height={'180'}
-                    image={image}
+                    image={product.picture}
                 />
                 <div className={'card_content'}>
-                    <h3>Item {index}</h3>
-                    <div>
-                        <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis error eveniet, in, libero
-                            neque nisi optio porro</small>
-                    </div>
+                    <h3>{product.name}</h3>
+                    {/*<div>*/}
+                    {/*    <small>{*/}
+                    {/*        product.description*/}
+                    {/*    }</small>*/}
+                    {/*</div>*/}
                     <div className={'price_wrapper'}>
-                        <span className={'old_price'}>$1020</span>
-                        <span className={'price'}>$999</span>
+                        <span className={'old_price'}>${product.oldPrice}</span>
+                        <span className={'price'}>${product.price}</span>
                     </div>
-                    <Button variant={'contained'} >
+                    <Button variant={'outlined'}>Read more</Button>
+                    <Button variant={'contained'}>
                         <ShoppingCartIcon/> Add to cart</Button>
                 </div>
             </Card>
