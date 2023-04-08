@@ -9,21 +9,20 @@ import { Alert } from '@mui/material';
 import { Link, Navigate } from 'react-router-dom';
 import Container from '@mui/material/Container';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../../store/auth';
 
 const Login = () => {
 
     const dispatch = useDispatch();
+    const { auth, status, error } = useSelector(state => state.authStore);
     const sendForm = (data) => {
         dispatch(login(data));
-        console.log(data);
+        /// console.log(data);
     };
     const { register, handleSubmit, formState: { errors } } = useForm();
-    // const response = useAppSelector(state => state.authStore);
     return (
         <div>
-            {/*<div style={{ height: '40px', width: '100%', backgroundColor: '#1E1E1EFF', marginBottom: '50px' }}></div>*/}
 
             <Container maxWidth="xs">
                 <Box
@@ -37,9 +36,9 @@ const Login = () => {
                     <Avatar sx={{ m: 1, width: 56, height: 56 }}>
                     </Avatar>
                     <Typography component="h4" variant="h6">
-                        Enter to admin dashboard
+                        Admin dashboard
                     </Typography>
-                    <Box sx={{ mt: 1 }}>
+                    <Box sx={{ mt: 1, width: '300px' }}>
                         <form onSubmit={handleSubmit((data) => sendForm(data))}>
                             <TextField
                                 margin={'normal'}
@@ -85,12 +84,14 @@ const Login = () => {
                             </Grid>
                         </Grid>
                     </Box>
+                    {status === 'error' || error ?  <Alert severity="error">{error}</Alert> : '' }
+                    {auth ?
+                        <>
+                        <Alert severity={'success'}>Login success!!!</Alert>
+                        <Navigate to={'/admin'}/></>
+                        : ''}
                 </Box>
-                {/*{response.status === 'error' || response.error ?*/}
-                {/*    <Alert severity="error">{response.error}: Incorrect login or password! </Alert> : ''}*/}
-                {/*{response.auth ? <Navigate to={'/admin'}/> : ''}*/}
             </Container>
-
         </div>
     );
 };

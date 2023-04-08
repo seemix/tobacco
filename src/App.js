@@ -10,6 +10,7 @@ import Category from './components/Category/Category';
 import React from 'react';
 import Loader from './components/Loader/Loader';
 import MainAdmin from './components/Admin/MainAdmin';
+import Login from './components/Admin/Login/Login';
 
 const Layout = React.lazy(() => import('./components/Layout/Layout'));
 const AdminLayout = React.lazy(() => import('./components/Admin/AdminLayout'));
@@ -32,6 +33,7 @@ function App() {
                     </React.Suspense>}>
                         <Route path={'/admin'} element={<MainAdmin/>}/>
                     </Route>
+                    <Route path={'/login'} element={<Login/>}/>
                 </Routes>
             </ThemeProvider>
         </>
