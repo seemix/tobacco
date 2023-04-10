@@ -2,8 +2,8 @@
     padding: 15px;
     position: absolute;
     top: 0;
-    right: -460px;
-    width: 460px;
+    right: -420px;
+    width: 420px;
     height: 100vh;
     background: rgba(249, 249, 249, 0.95);
     transition: 0.5s all ease-in-out;
@@ -16,6 +16,12 @@
 }
 
 .cart_wrapper h2 {
-    color: rgb(109,109,109);
+    color: rgb(109, 109, 109);
 }
 
+@media screen and (max-width: 420px) {
+
+    .cart_wrapper {
+        width: 100%;
+    }
+}
