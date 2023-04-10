@@ -1,11 +1,12 @@
 .cart_wrapper {
+    font-family: 'Fira Sans', sans-serif;
     padding: 15px;
     position: absolute;
     top: 0;
     right: -460px;
     width: 450px;
     height: 100vh;
-    background: rgba(249, 249, 249, 0.95);
+    background: rgba(249, 249, 249, 1);
     transition: 0.5s all ease-in-out;
     z-index: 2;
 }
@@ -16,6 +17,7 @@
 }
 
 .cart_wrapper h2 {
+    margin-right: 30px;
     color: rgb(109, 109, 109);
 }
 
