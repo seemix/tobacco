@@ -12,18 +12,24 @@ const Cart = () => {
     return (
         <div className={showCart ? 'cart_wrapper show_cart' : 'cart_wrapper'}>
             <div style={{ cursor: 'pointer' }} onClick={() => dispatch(hideCart())}>
-                <CloseIcon fontSize={'large'} style={{position: 'absolute', top: '20px', left: '20px'}}/>
+                <CloseIcon fontSize={'large'} style={{ position: 'absolute', top: '20px', right: '20px' }}/>
             </div>
-            <h2>Cart</h2>
-            <p>44444444444444</p>
-            <p>44444444444444</p>
-            <p>44444444444444</p>
-            <p>44444444444444</p>
-            <Button variant={'contained'} sx={{width: '100%' }}>
+            <div style={{height: '90vh'}}>
+                <h2>Cart</h2>
+                <p>44444444444444</p>
+                <p>44444444444444</p>
+                <p>44444444444444</p>
+                <p>44444444444444</p>
+                <p>44444444444444</p>
+                <p>44444444444444</p>
+                <p>44444444444444</p>
+                <p>44444444444444</p>
+                <p>44444444444444</p></div>
+            <div style={{marginTop: 'auto'}}><Button variant={'contained'} sx={{ width: '100%' }}>
                 Checkout
-            </Button>
+            </Button></div>
         </div>
-    );
+    )
 };
 
 export default Cart;
