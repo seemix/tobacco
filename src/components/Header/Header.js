@@ -9,9 +9,10 @@ import logo from './tob2.png'
 import SearchBar from '../SearchBar/SearchBar';
 import SearchIcon from './SearchIcon';
 import CartIcon from './CartIcon';
-import { closeMenu, openMenu, setLanguage, showHideItem } from '../../store/appearance';
+import { closeMenu, openMenu, setLanguage, showCart, showHideItem } from '../../store/appearance';
 import { NavLink } from 'react-router-dom';
 import { getAllCategories } from '../../store/category';
+import Cart from '../Cart/Cart';
 
 const Header = () => {
     const { openedMenu, showElement, language, filteredLang } = useSelector(state => state.appearanceStore);
@@ -71,8 +72,8 @@ const Header = () => {
                 </ul>
             </nav>
             <div className={'icons_wrapper'}>
-                <div>
-                    <Badge badgeContent={2} color={'secondary'} style={{top: '3px'}}>
+                <div onClick={() => dispatch(showCart())}>
+                    <Badge badgeContent={2} color={'secondary'} style={{ top: '3px' }}>
                         <CartIcon/>
                     </Badge>
                 </div>
@@ -81,6 +82,7 @@ const Header = () => {
                     <SearchIcon/>
                 </div>
             </div>
+            <Cart/>
         </div>
     );
 };
