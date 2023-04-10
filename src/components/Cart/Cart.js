@@ -14,8 +14,13 @@ const Cart = () => {
             <div style={{ cursor: 'pointer' }} onClick={() => dispatch(hideCart())}>
                 <CloseIcon fontSize={'large'} style={{ position: 'absolute', top: '20px', right: '20px' }}/>
             </div>
-            <div style={{height: '90vh'}}>
+            <div style={{height: 'calc(100% - 50px'}}>
                 <h2>Shopping cart</h2>
+                <p>44444444444444</p>
+                <p>44444444444444</p>
+                <p>44444444444444</p>
+                <p>44444444444444</p>
+                <p>44444444444444</p>
                 <p>44444444444444</p>
                 <p>44444444444444</p>
                 <p>44444444444444</p>
