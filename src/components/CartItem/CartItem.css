@@ -1,0 +1,15 @@
+.cart_card {
+    padding: 10px;
+    background-color: white;
+}
+
+.cart_card h4 {
+    margin-bottom: 10px;
+    color: rgb(109,109,109);
+}
+
+.cart_item_wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
