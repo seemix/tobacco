@@ -13,9 +13,10 @@ import { closeMenu, openMenu, setLanguage, showCart, showHideItem } from '../../
 import { NavLink } from 'react-router-dom';
 import { getAllCategories } from '../../store/category';
 import Cart from '../Cart/Cart';
+import { Backdrop } from '@mui/material';
 
 const Header = () => {
-    const { openedMenu, showElement, language, filteredLang } = useSelector(state => state.appearanceStore);
+    const { openedMenu, cart, showElement, language, filteredLang } = useSelector(state => state.appearanceStore);
     const { categories } = useSelector(state => state.categoryStore);
     const dispatch = useDispatch();
     useEffect(() => {
@@ -23,6 +24,7 @@ const Header = () => {
     }, [dispatch]);
     return (
         <div className={'header_wrapper'}>
+            <Backdrop open={cart}/>
             <div className={'burger_icon'}>
                 {
                     !openedMenu ? <MenuIcon onClick={() => dispatch(openMenu())} fontSize={'large'}
@@ -72,8 +74,8 @@ const Header = () => {
                 </ul>
             </nav>
             <div className={'icons_wrapper'}>
-                <div onClick={() => dispatch(showCart())}>
-                    <Badge badgeContent={2} color={'secondary'} style={{ top: '3px' }}>
+                <div onClick={() => dispatch(showCart())} style={{cursor: 'pointer'}}>
+                    <Badge badgeContent={2} color={'secondary'} style={{ top: '3px', zIndex: -1 }}>
                         <CartIcon/>
                     </Badge>
                 </div>

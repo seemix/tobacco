@@ -18,7 +18,7 @@ const CartItem = () => {
                         <div style={{ textAlign: 'center' }}><big><b>500Kr.</b></big></div>
                         <div>
                             <Button onClick={() => setCount(count => count - 1)}><big>-</big></Button>
-                            <TextField size={'small'} style={{ width: '40px' }}
+                            <TextField size={'small'} style={{ width: '44px' }}
                                        className={'TextField-without-border-radius'} value={count}/>
                             <Button onClick={() => setCount(count => count + 1)}><big>+</big></Button>
                         </div>

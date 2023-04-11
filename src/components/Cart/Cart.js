@@ -8,11 +8,10 @@ import { Button } from '@mui/material';
 import CartItem from '../CartItem/CartItem';
 
 const Cart = () => {
-    const { showCart } = useSelector(state => state.appearanceStore);
+    const { cart } = useSelector(state => state.appearanceStore);
     const dispatch = useDispatch();
     return (
-        <div className={showCart ? 'cart_wrapper show_cart' : 'cart_wrapper'}>
-
+        <div className={cart ? 'cart_wrapper show_cart' : 'cart_wrapper'}>
             <div style={{ cursor: 'pointer' }} onClick={() => dispatch(hideCart())}>
                 <CloseIcon fontSize={'large'} className={'close_icon'}/>
             </div>

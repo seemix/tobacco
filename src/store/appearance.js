@@ -8,7 +8,7 @@ export const appearanceSlice = createSlice({
         language: 'EN',
         filteredLang: ['DK', 'RU'],
         languages: ['EN', 'DK', 'RU'],
-        showCart: false
+        cart: false,
     },
     reducers: {
         showHideItem(state) {
@@ -28,10 +28,10 @@ export const appearanceSlice = createSlice({
             state.openedMenu = false;
         },
         showCart(state) {
-            state.showCart = (!state.showCart);
+            state.cart = (!state.cart);
         },
         hideCart(state) {
-            state.showCart = false;
+            state.cart = false;
         }
     }
 });
