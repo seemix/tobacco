@@ -15,5 +15,5 @@
 }
 
 .cart_item_wrapper img {
-    width: calc(150px + (180 - 150) * ((100vw - 360px) / (1920 - 360)));
+    width: calc(135px + (180 - 135) * ((100vw - 360px) / (1920 - 360)));
 }
