@@ -11,8 +11,7 @@ const CartItem = () => {
                 <div className={'cart_item_wrapper'}>
                     <div>
                         <div><img
-                            src={'https://cdn-prod.medicalnewstoday.com/content/images/articles/322/322685/hookah-smoking.jpg'}
-                            width={'200'} alt={'img'}/>
+                            src={'https://cdn-prod.medicalnewstoday.com/content/images/articles/322/322685/hookah-smoking.jpg'}  alt={'img'}/>
                         </div>
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>

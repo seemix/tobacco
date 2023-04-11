@@ -24,6 +24,7 @@ const Cart = () => {
                     <CartItem/>
                     <CartItem/>
                     <CartItem/>
+                    <Button fullWidth>remove all</Button>
                 </div>
             </div>
             <div className={'bottom_wrapper'}>
