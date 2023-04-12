@@ -3,28 +3,29 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductsByCategory } from '../../store/product';
 import ItemCard from '../ItemCard/ItemCard';
+import { getAllCategories } from '../../store/category';
 
 const Category = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
     useEffect(() => {
         dispatch(getProductsByCategory(id));
+        dispatch(getAllCategories());
     }, [dispatch, id]);
     const { categories } = useSelector(state => state.categoryStore);
-    const currentCat = categories.filter(item => item.id === +id);
+    const currentCat = categories.filter(item => item.id === +id)[0];
     const { products } = useSelector(state => state.productStore);
     return (
-        <div className={'main_container'}>
-            {
-                currentCat &&
-                <h2>{currentCat.map(item => item.name.toUpperCase())}</h2>
-            }
-            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent:'center' }}>
+        <div style={{ marginTop: '70px' }}>
+            <div className={'image_container'} style={{ backgroundImage: `url(${currentCat?.picture})` }}>
+                {/*<div className={'image_overlay'}></div>*/}
+                <h2>{currentCat?.name.toUpperCase()}</h2>
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
                 {products &&
                     products.map(item => <ItemCard key={item.id} product={item}/>)
                 }
             </div>
-
         </div>
     );
 };

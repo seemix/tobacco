@@ -16,6 +16,7 @@
     display: flex;
     justify-content: space-evenly;
     gap: 15px;
+    color: rgb(109,109,109);
 }
 
 .logo {

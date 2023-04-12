@@ -86,7 +86,20 @@ export const authSlice = createSlice({
                localStorage.setItem('token', action.payload.accessToken);
                 state.user = action.payload.user;
                 state.auth = true;
-            });
+            })
+            .addCase(refresh.rejected, state => {
+                state.status = 'error';
+                state.auth = false;
+            })
+            .addCase(logout.pending, state => {
+                state.status = 'loading';
+            })
+            .addCase(logout.fulfilled, state => {
+                state.auth = false;
+                state.user = null;
+                state.status = 'logout';
+                localStorage.removeItem('token');
+            })
     }
 });
 

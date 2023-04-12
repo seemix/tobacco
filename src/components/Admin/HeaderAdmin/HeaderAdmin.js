@@ -1,13 +1,19 @@
 import React from 'react';
 import logo from '../../Header/tob2.png';
-import { NavLink } from 'react-router-dom';
+import { Navigate, NavLink } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { logout } from '../../../store/auth';
 
 const HeaderAdmin = () => {
-    const { user, auth } = useSelector(state => state.authStore);
+    const { user, auth, status } = useSelector(state => state.authStore);
+    const dispatch = useDispatch();
     return (
         <div className={'header_wrapper'}>
+            {
+                status === 'logout' && <Navigate to={'/login'}/>
+            }
             <div>
                 <img src={logo} alt="logo" className={'logo'}/>
             </div>
@@ -19,9 +25,12 @@ const HeaderAdmin = () => {
                     <li><NavLink to={'/'}>Products</NavLink></li>
                 </ul>
             </nav>
-            <div>
-                {auth ? user : ''}
+            <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
+                <div>{auth ? user : ''}</div>
                 <Avatar>{user[0]}</Avatar>
+                <div style={{ cursor: 'pointer' }}>
+                    <LogoutIcon onClick={() => dispatch(logout())}/>
+                </div>
             </div>
         </div>
     );

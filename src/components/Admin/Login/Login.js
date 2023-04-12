@@ -5,6 +5,7 @@ import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import LockPersonIcon from '@mui/icons-material/LockPerson';
 import { Alert } from '@mui/material';
 import { Link, Navigate } from 'react-router-dom';
 import Container from '@mui/material/Container';
@@ -18,7 +19,6 @@ const Login = () => {
     const { auth, status, error } = useSelector(state => state.authStore);
     const sendForm = (data) => {
         dispatch(login(data));
-        /// console.log(data);
     };
     const { register, handleSubmit, formState: { errors } } = useForm();
     return (
@@ -34,6 +34,7 @@ const Login = () => {
                     }}
                 >
                     <Avatar sx={{ m: 1, width: 56, height: 56 }}>
+                        <LockPersonIcon/>
                     </Avatar>
                     <Typography component="h4" variant="h6">
                         Admin dashboard
@@ -41,6 +42,7 @@ const Login = () => {
                     <Box sx={{ mt: 1, width: '300px' }}>
                         <form onSubmit={handleSubmit((data) => sendForm(data))}>
                             <TextField
+                                className={'TextField-without-border-radius'}
                                 margin={'normal'}
                                 label={'login'}
                                 variant={'outlined'}
@@ -53,6 +55,7 @@ const Login = () => {
                                 helperText={errors?.email ? errors.email.message : null}
                             />
                             <TextField
+                                className={'TextField-without-border-radius'}
                                 margin={'normal'}
                                 label={'password'}
                                 variant={'outlined'}
