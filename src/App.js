@@ -11,6 +11,8 @@ import React from 'react';
 import Loader from './components/Loader/Loader';
 import MainAdmin from './components/Admin/MainAdmin';
 import Login from './components/Admin/Login/Login';
+import Orders from './components/Admin/Orders/Orders';
+import CategoriesAdmin from './components/Admin/CategoriesAdmin/CategoriesAdmin';
 
 const Layout = React.lazy(() => import('./components/Layout/Layout'));
 const AdminLayout = React.lazy(() => import('./components/Admin/AdminLayout'));
@@ -24,14 +26,17 @@ function App() {
                         <Layout/>
                     </React.Suspense>}>
                         <Route path={'/'} index element={<Main/>}/>
-                        <Route path={'/about'} element={<About/>}/>
-                        <Route path={'/contacts'} element={<Contacts/>}/>
-                        <Route path={'/category/:id'} element={<Category/>}/>
+                        <Route path={'about'} element={<About/>}/>
+                        <Route path={'contacts'} element={<Contacts/>}/>
+                        <Route path={'category/:id'} element={<Category/>}/>
                     </Route>
                     <Route element={<React.Suspense fallback={<Loader/>}>
                         <AdminLayout/>
                     </React.Suspense>}>
-                        <Route path={'/admin'} element={<MainAdmin/>}/>
+                        <Route path={'admin'} element={<MainAdmin/>}>
+                            <Route path={'orders'} element={<Orders/>}/>
+                            <Route path={'categories'} element={<CategoriesAdmin/>}/>
+                        </Route>
                     </Route>
                     <Route path={'/login'} element={<Login/>}/>
                 </Routes>

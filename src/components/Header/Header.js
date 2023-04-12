@@ -3,6 +3,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import Badge from '@mui/material/Badge';
 import { useDispatch, useSelector } from 'react-redux';
+import { Backdrop } from '@mui/material';
+import { NavLink } from 'react-router-dom';
 
 import './Header.css';
 import logo from './tob2.png'
@@ -10,10 +12,8 @@ import SearchBar from '../SearchBar/SearchBar';
 import SearchIcon from './SearchIcon';
 import CartIcon from './CartIcon';
 import { closeMenu, openMenu, setLanguage, showCart, showHideItem } from '../../store/appearance';
-import { NavLink } from 'react-router-dom';
 import { getAllCategories } from '../../store/category';
 import Cart from '../Cart/Cart';
-import { Backdrop } from '@mui/material';
 
 const Header = () => {
     const { openedMenu, cart, showElement, language, filteredLang } = useSelector(state => state.appearanceStore);
@@ -74,7 +74,7 @@ const Header = () => {
                 </ul>
             </nav>
             <div className={'icons_wrapper'}>
-                <div onClick={() => dispatch(showCart())} style={{cursor: 'pointer'}}>
+                <div onClick={() => dispatch(showCart())} style={{ cursor: 'pointer' }}>
                     <Badge badgeContent={2} color={'secondary'} style={{ top: '3px', zIndex: -1 }}>
                         <CartIcon/>
                     </Badge>

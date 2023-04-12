@@ -1,15 +1,24 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import MainAdmin from './MainAdmin';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
+import MainAdmin from './MainAdmin';
+import { refresh } from '../../store/auth';
+import Loader from '../Loader/Loader';
+
 const AdminLayout = () => {
-    const { auth } = useSelector(state => state.authStore);
-    console.log(auth);
+    const { auth, status } = useSelector(state => state.authStore);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token && !auth) {
+            dispatch(refresh());
+        }
+    }, [dispatch, auth])
     return (
-        <div>
-            <h2>Admin wrapper</h2>
-            {auth ? <MainAdmin/> : <Navigate to={'/login'}/>}
+        <div style={{ marginTop: '80px' }}>
+            {status === 'loading' && <Loader/>}
+            {status === 'fulfilled' && auth ? <MainAdmin/> : status && status!== 'loading' && <Navigate to={'/login'}/>}
         </div>
     );
 };
