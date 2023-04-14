@@ -15,12 +15,11 @@ const SingleCategoryAdmin = ({ category }) => {
                         <img src={`${config.BACKEND_URL}category/${category.picture}`} alt="123" width={500}/>
                         <h3>{category.name}</h3>
                     </div>
-                    {/*<div></div>*/}
                     <div>
-                        <Button><EditIcon color={'info'}/></Button>
+                        <Button><EditIcon/></Button>
                     </div>
                     <div>
-                        <Button><DeleteForeverIcon color={'error'}/></Button>
+                        <Button><DeleteForeverIcon/></Button>
                     </div>
                 </div>
             </Card>

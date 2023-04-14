@@ -13,10 +13,21 @@ export const getAllCategories = createAsyncThunk(
 );
 
 export const createCategory = createAsyncThunk(
-    '',
+    'categorySlice/Create',
     async (data, thunkAPI) => {
         try {
-            return categoryService.create(data);
+            return categoryService.createCategory(data);
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e);
+        }
+    }
+);
+
+export const saveCategoriesOrder = createAsyncThunk(
+    'categorySlice/SaveOrder',
+    async (data, thunkAPI) => {
+        try {
+             return categoryService.saveOrder(data);
         } catch (e) {
             return thunkAPI.rejectWithValue(e);
         }
@@ -28,9 +39,16 @@ export const categorySlice = createSlice({
     initialState: {
         status: null,
         error: null,
-        categories: []
+        categories: [],
+        showReorderButton: false
     },
-    reducers: {},
+    reducers: {
+        categoriesReorder(state, action) {
+            state.categories = action.payload;
+            state.showReorderButton = true;
+            return state;
+        },
+    },
     extraReducers: builder => {
         builder
             .addCase(getAllCategories.pending, state => {
@@ -53,10 +71,14 @@ export const categorySlice = createSlice({
             .addCase(createCategory.fulfilled, (state, action) => {
                 state.status = 'fulfilled';
                 state.error = null;
-                state.categories.push(action.payload);
+                state.categories = action.payload;
+            })
+            .addCase(saveCategoriesOrder.fulfilled, state => {
+                state.showReorderButton = false;
             })
     }
 });
 
-const categoryStore = categorySlice.reducer;
+export const { categoriesReorder } = categorySlice.actions;
+ const categoryStore = categorySlice.reducer;
 export default categoryStore;

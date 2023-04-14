@@ -50,8 +50,8 @@ const Header = () => {
                     <li><a href="#" className={'menu_parent'}>Products <i className={'arrow_right'}></i> </a>
                         <ul>
                             {categories &&
-                                categories.map(cat => <li key={cat.id}><NavLink
-                                    to={`category/${cat.id}`}>{cat.name}</NavLink></li>)
+                                categories.map(cat => <div key={cat.id}><li><NavLink
+                                    to={`category/${cat.id}`}>{cat.name}</NavLink></li></div>)
                             }
 
                         </ul>
