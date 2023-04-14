@@ -14,10 +14,9 @@ import { useForm } from 'react-hook-form';
 import './AddEditForm.css';
 
 const AddEditForm = () => {
-    const { register, handleSubmit, watch } = useForm();
+    const { register, handleSubmit, watch, setValue } = useForm();
     const [pic, setPic] = useState('none');
     const [pastedLink, setPastedLink] = useState();
-    const [file, setFile] = useState();
     const handleChange = (event) => {
         setPic(event.target.value);
         if (event.target.value !== 'link') {
@@ -28,32 +27,30 @@ const AddEditForm = () => {
         }
     }
     const fileChange = (e) => {
-        // setFile(e.target.files[0]);
         const pict = e.target.files[0];
-        console.log(pict);
+        setValue('image', pict);
         setPastedLink(URL.createObjectURL(pict));
     }
     const saveForm = (data) => {
         if (pic !== 'link') data.link = null;
         console.log(data);
     }
-    console.log(file);
+    console.log(pastedLink);
     return (
         <>
             <Box className={'modal_box'}>
-                <Paper style={{ padding: '20px' }}>
+                <Paper className={'paper_box'} style={{borderRadius: 0}}>
                     <h2>Add/Edit category</h2>
-                    <div
-                        style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '15px' }}>
+                    <div className={'wrapper'}>
                         <form onSubmit={handleSubmit(saveForm)}>
-                            <div style={{ margin: '10px' }}>
+                            <div>
                                 <TextField
                                     {...register('categoryName')}
                                     label={'category name'}
                                     fullWidth
                                 />
                             </div>
-                            <div style={{ margin: '10px' }}>
+                            <div>
                                 <FormLabel id={'radio'}>
                                     Category image
                                 </FormLabel>
@@ -91,12 +88,19 @@ const AddEditForm = () => {
                                     </Button>
                                 </div>
                             }
-                            <div style={{ minHeight: 330, margin: '15px' }}>
-                                {pastedLink && <img src={pastedLink} alt={'pasted'} width={300}/>}
+                            <div style={{ minHeight: 330 }}>
+                                {pastedLink && <> <img src={pastedLink} alt={'pasted'} width={300}/>
+                                    <Button
+                                    >
+                                        remove
+                                    </Button>
+                                </>}
+
                             </div>
                             <div>
                                 <DialogActions>
-                                    <Button variant={'contained'}>Cancel</Button>
+                                    <Button variant={'contained'}>Cancel
+                                    </Button>
                                     <Button variant={'contained'} type={'submit'}>Submit</Button>
                                 </DialogActions>
                             </div>

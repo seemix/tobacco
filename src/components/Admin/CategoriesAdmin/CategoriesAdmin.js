@@ -1,23 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllCategories } from '../../../store/category';
 import SingleCategoryAdmin from './SingleCategoryAdmin/SingleCategoryAdmin';
 import { Button, Modal } from '@mui/material';
 import AddEditForm from './AddEditForm/AddEditForm';
+import { hideCategoryEdit, showCategoryEdit } from '../../../store/appearance';
 
 const CategoriesAdmin = () => {
     const dispatch = useDispatch();
-    const [open, setOpen] = useState(false);
+    const { categoryEditModal } = useSelector(state => state.appearanceStore);
     useEffect(() => {
         dispatch(getAllCategories());
-    }, [])
+    }, [dispatch])
     const { categories } = useSelector(state => state.categoryStore);
     return (
         <div>
-            <h2>Categories <Button onClick={() => setOpen(true)}> + Add new</Button></h2>
+            <h2>Categories <Button onClick={() => dispatch(showCategoryEdit())}> + Add new</Button></h2>
             <Modal
-                open={open}
-                onClose={() => setOpen(false)}
+                open={categoryEditModal}
+                onClose={() => dispatch(hideCategoryEdit())}
             >
                 <AddEditForm/>
             </Modal>
