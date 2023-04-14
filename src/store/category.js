@@ -12,6 +12,17 @@ export const getAllCategories = createAsyncThunk(
     }
 );
 
+export const createCategory = createAsyncThunk(
+    '',
+    async (data, thunkAPI) => {
+        try {
+            return categoryService.create(data);
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e);
+        }
+    }
+);
+
 export const categorySlice = createSlice({
     name: 'categorySlice',
     initialState: {
@@ -34,6 +45,15 @@ export const categorySlice = createSlice({
             .addCase(getAllCategories.rejected, (state, action) => {
                 state.status = 'error';
                 state.error = action.payload;
+            })
+            .addCase(createCategory.pending, state => {
+                state.status = 'loading';
+                state.error = null;
+            })
+            .addCase(createCategory.fulfilled, (state, action) => {
+                state.status = 'fulfilled';
+                state.error = null;
+                state.categories.push(action.payload);
             })
     }
 });

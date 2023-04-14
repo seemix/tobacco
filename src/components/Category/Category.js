@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProductsByCategory } from '../../store/product';
 import ItemCard from '../ItemCard/ItemCard';
 import { getAllCategories } from '../../store/category';
+import { config } from '../../config/config';
 
 const Category = () => {
     const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const Category = () => {
     const { products } = useSelector(state => state.productStore);
     return (
         <div style={{ marginTop: '70px' }}>
-            <div className={'image_container'} style={{ backgroundImage: `url(${currentCat?.picture})` }}>
+            <div className={'image_container'} style={{ backgroundImage: `url(${config.BACKEND_URL}category/${currentCat?.picture})` }}>
                 {/*<div className={'image_overlay'}></div>*/}
                 <h2>{currentCat?.name.toUpperCase()}</h2>
             </div>

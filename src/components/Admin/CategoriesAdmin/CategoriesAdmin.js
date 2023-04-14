@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllCategories } from '../../../store/category';
 import SingleCategoryAdmin from './SingleCategoryAdmin/SingleCategoryAdmin';
-import { Button, Modal } from '@mui/material';
+import { Button, Dialog, DialogContent } from '@mui/material';
 import AddEditForm from './AddEditForm/AddEditForm';
 import { hideCategoryEdit, showCategoryEdit } from '../../../store/appearance';
 
@@ -16,12 +16,15 @@ const CategoriesAdmin = () => {
     return (
         <div>
             <h2>Categories <Button onClick={() => dispatch(showCategoryEdit())}> + Add new</Button></h2>
-            <Modal
+            <Dialog
+                maxWidth={'xs'}
                 open={categoryEditModal}
                 onClose={() => dispatch(hideCategoryEdit())}
             >
+                <DialogContent style={{ borderRadius: 0}}>
                 <AddEditForm/>
-            </Modal>
+                </DialogContent>
+            </Dialog>
             {
                 categories.map((category, index) => <SingleCategoryAdmin category={category} key={index}/>)
             }

@@ -36,8 +36,17 @@ const theme = createTheme({
                     borderRadius: 0
                 }
             }
+        },
+
+        MuiPaper: {
+            styleOverrides: {
+                root: {
+                    borderRadius: 0
+                }
+            }
         }
     },
+
 
 });
 

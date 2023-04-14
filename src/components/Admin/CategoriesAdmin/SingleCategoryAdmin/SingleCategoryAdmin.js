@@ -4,16 +4,18 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 import './SingleCategoryAdmin.css';
+import { config } from '../../../../config/config';
 
 const SingleCategoryAdmin = ({ category }) => {
     return (
         <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-            <Card style={{ minWidth: '800px' }}>
+            <Card style={{margin: '15px'}}>
                 <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-                    <div className={'admin_cat_picture'} style={{ backgroundImage: `url(${category.picture})` }}>
-                        <img src={category.picture} alt="123" width={540}/>
+                    <div className={'admin_cat_picture'}>
+                        <img src={`${config.BACKEND_URL}category/${category.picture}`} alt="123" width={500}/>
+                        <h3>{category.name}</h3>
                     </div>
-                    <div><h3>{category.name}</h3></div>
+                    {/*<div></div>*/}
                     <div>
                         <Button><EditIcon color={'info'}/></Button>
                     </div>
