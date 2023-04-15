@@ -71,7 +71,7 @@ export const categorySlice = createSlice({
             .addCase(createCategory.fulfilled, (state, action) => {
                 state.status = 'fulfilled';
                 state.error = null;
-                state.categories = action.payload;
+                state.categories.push(action.payload);
             })
             .addCase(saveCategoriesOrder.fulfilled, state => {
                 state.showReorderButton = false;

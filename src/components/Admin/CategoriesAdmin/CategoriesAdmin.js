@@ -38,8 +38,7 @@ const CategoriesAdmin = () => {
                 </DialogContent>
             </Dialog>
             <Reorder.Group values={categories} onReorder={(newOrder) => reOrder(newOrder)} as={'ol'}>
-
-                {
+                {categories &&
                     categories.map((category, index) => <Reorder.Item value={category}
                                                                       key={category.id}
                                                                       whileDrag={{ scale: 1.05 }}>
