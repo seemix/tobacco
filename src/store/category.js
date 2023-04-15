@@ -23,11 +23,22 @@ export const createCategory = createAsyncThunk(
     }
 );
 
+export const updateCategory = createAsyncThunk(
+    'categorySlice/Update',
+    async (data, thunkAPI) => {
+        try {
+            return categoryService.updateCategory(data);
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e);
+        }
+    }
+);
+
 export const saveCategoriesOrder = createAsyncThunk(
     'categorySlice/SaveOrder',
     async (data, thunkAPI) => {
         try {
-             return categoryService.saveOrder(data);
+            return categoryService.saveOrder(data);
         } catch (e) {
             return thunkAPI.rejectWithValue(e);
         }
@@ -39,6 +50,7 @@ export const categorySlice = createSlice({
     initialState: {
         status: null,
         error: null,
+        categoryForUpdate: null,
         categories: [],
         showReorderButton: false
     },
@@ -48,6 +60,9 @@ export const categorySlice = createSlice({
             state.showReorderButton = true;
             return state;
         },
+        setCategoryForUpdate(state, action) {
+            state.categoryForUpdate = action.payload;
+        }
     },
     extraReducers: builder => {
         builder
@@ -80,5 +95,5 @@ export const categorySlice = createSlice({
 });
 
 export const { categoriesReorder } = categorySlice.actions;
- const categoryStore = categorySlice.reducer;
+const categoryStore = categorySlice.reducer;
 export default categoryStore;
