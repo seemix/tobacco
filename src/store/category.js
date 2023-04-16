@@ -45,6 +45,17 @@ export const saveCategoriesOrder = createAsyncThunk(
     }
 );
 
+export const deleteImage = createAsyncThunk(
+    'categorySlice/DeleteImage',
+    async (fileName, thunkAPI) => {
+        try {
+            return categoryService.deleteImage(fileName);
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e);
+        }
+    }
+);
+
 export const categorySlice = createSlice({
     name: 'categorySlice',
     initialState: {
@@ -91,9 +102,29 @@ export const categorySlice = createSlice({
             .addCase(saveCategoriesOrder.fulfilled, state => {
                 state.showReorderButton = false;
             })
+            .addCase(deleteImage.fulfilled, (state, action) => {
+                state.status = 'fulfilled';
+                state.error = null;
+                state.categories.forEach(obj => {
+                    if (obj.picture === action.payload) {
+                        obj.picture = null
+                    }
+                });
+                state.categoryForUpdate.picture = null;
+            })
+            .addCase(updateCategory.fulfilled, (state, action) => {
+                state.status = 'fulfilled';
+                state.error = null;
+                state.categories.forEach(obj => {
+                    if (obj.id === action.payload.id) {
+                       obj.name = action.payload.name;
+                       obj.picture = action.payload.picture;
+                    }
+                })
+            })
     }
 });
 
-export const { categoriesReorder } = categorySlice.actions;
+export const { setCategoryForUpdate, categoriesReorder } = categorySlice.actions;
 const categoryStore = categorySlice.reducer;
 export default categoryStore;

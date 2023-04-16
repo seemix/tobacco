@@ -5,8 +5,16 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 import './SingleCategoryAdmin.css';
 import { config } from '../../../../config/config';
+import { useDispatch } from 'react-redux';
+import { showCategoryEdit } from '../../../../store/appearance';
+import { setCategoryForUpdate } from '../../../../store/category';
 
 const SingleCategoryAdmin = ({ category }) => {
+    const dispatch = useDispatch();
+    const categoryEdit = (category) => {
+        dispatch(setCategoryForUpdate(category));
+        dispatch(showCategoryEdit(true));
+    }
     return (
         <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
             <Card style={{margin: '15px'}}>
@@ -16,7 +24,7 @@ const SingleCategoryAdmin = ({ category }) => {
                         <h3>{category.name}</h3>
                     </div>
                     <div>
-                        <Button><EditIcon/></Button>
+                        <Button onClick={() => categoryEdit(category)}><EditIcon/></Button>
                     </div>
                     <div>
                         <Button><DeleteForeverIcon/></Button>

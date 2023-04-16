@@ -16,9 +16,8 @@ const CategoriesAdmin = () => {
     useEffect(() => {
         dispatch(getAllCategories());
     }, [dispatch])
-
     const { categories, showReorderButton } = useSelector(state => state.categoryStore);
-
+    console.log(categories);
     return (
         <div>
             <h2>
