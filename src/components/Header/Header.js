@@ -28,14 +28,10 @@ const Header = () => {
             <div className={'burger_icon'}>
                 {
                     !openedMenu ? <MenuIcon onClick={() => dispatch(openMenu())} fontSize={'large'}
-                                            style={{
-                                                color: 'rgba(109, 109, 109)',
-                                                cursor: 'pointer',
-                                                marginTop: '5px'
-                                            }}/>
+                                            className={'menu_icon'}/>
                         : <CloseIcon
                             onClick={() => dispatch(closeMenu())} fontSize={'large'}
-                            style={{ color: 'rgba(109, 109, 109)', cursor: 'pointer', marginTop: '5px' }}/>
+                            className={'menu_icon'}/>
 
                 }
             </div>
@@ -56,7 +52,6 @@ const Header = () => {
 
                         </ul>
                     </li>
-
                 </ul>
             </nav>
             <nav id={'lang'} className={'menu_wrapper'} style={{ minWidth: '70px' }}>

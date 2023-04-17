@@ -107,7 +107,11 @@
     transform: rotate(45deg);
     transition: 0.2s all ease-in-out;
 }
-
+.menu_icon {
+    color: rgba(109, 109, 109);
+    cursor: pointer;
+    margin-top: 5px;
+}
 .menu_icon svg:hover {
     fill: #b17862;
 }

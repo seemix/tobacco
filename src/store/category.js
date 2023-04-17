@@ -99,8 +99,16 @@ export const categorySlice = createSlice({
                 state.error = null;
                 state.categories.push(action.payload);
             })
+            .addCase(createCategory.rejected, (state, action) => {
+                state.status = 'error';
+                state.error = action.payload.response.data.message;
+            })
             .addCase(saveCategoriesOrder.fulfilled, state => {
                 state.showReorderButton = false;
+            })
+            .addCase(deleteImage.pending, state => {
+                state.status = 'loading';
+                state.error = null;
             })
             .addCase(deleteImage.fulfilled, (state, action) => {
                 state.status = 'fulfilled';
@@ -111,6 +119,10 @@ export const categorySlice = createSlice({
                     }
                 });
                 state.categoryForUpdate.picture = null;
+            })
+            .addCase(deleteImage.rejected, (state, action) => {
+                state.status = 'error';
+                state.error = action.payload.response.data.message;
             })
             .addCase(updateCategory.fulfilled, (state, action) => {
                 state.status = 'fulfilled';

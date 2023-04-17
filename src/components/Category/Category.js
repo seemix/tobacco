@@ -7,7 +7,6 @@ import ItemCard from '../ItemCard/ItemCard';
 import { config } from '../../config/config';
 
 const Category = () => {
-
     const dispatch = useDispatch();
     const { id } = useParams();
     useEffect(() => {

@@ -13,6 +13,7 @@ import MainAdmin from './components/Admin/MainAdmin';
 import Login from './components/Admin/Login/Login';
 import Orders from './components/Admin/Orders/Orders';
 import CategoriesAdmin from './components/Admin/CategoriesAdmin/CategoriesAdmin';
+import ProductsAdmin from './components/Admin/ProductsAdmin/ProductsAdmin';
 
 const Layout = React.lazy(() => import('./components/Layout/Layout'));
 const AdminLayout = React.lazy(() => import('./components/Admin/AdminLayout'));
@@ -36,6 +37,7 @@ function App() {
                         <Route path={'admin'} element={<MainAdmin/>}>
                             <Route path={'orders'} element={<Orders/>}/>
                             <Route path={'categories'} element={<CategoriesAdmin/>}/>
+                            <Route path={'category/:id'} element={<ProductsAdmin/>}/>
                         </Route>
                     </Route>
                     <Route path={'/login'} element={<Login/>}/>

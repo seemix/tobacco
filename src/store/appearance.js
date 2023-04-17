@@ -9,7 +9,8 @@ export const appearanceSlice = createSlice({
         filteredLang: ['DK', 'RU'],
         languages: ['EN', 'DK', 'RU'],
         cart: false,
-        categoryEditModal: false
+        categoryEditModal: false,
+        productFormModal: false
     },
     reducers: {
         showHideItem(state) {
@@ -39,9 +40,27 @@ export const appearanceSlice = createSlice({
         },
         hideCategoryEdit(state) {
             state.categoryEditModal = false;
+        },
+        showProductForm(state) {
+            state.productFormModal = true;
+        },
+        hideProductForm(state) {
+            state.productFormModal = false;
         }
     }
 });
-export const { openMenu, closeMenu, hideItem, showHideItem, setLanguage, showCart, hideCart, showCategoryEdit, hideCategoryEdit } = appearanceSlice.actions;
+export const {
+    openMenu,
+    closeMenu,
+    hideItem,
+    showHideItem,
+    setLanguage,
+    showCart,
+    hideCart,
+    showCategoryEdit,
+    hideCategoryEdit,
+    showProductForm,
+    hideProductForm
+} = appearanceSlice.actions;
 export const appearanceStore = appearanceSlice.reducer;
 export default appearanceStore;

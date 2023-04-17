@@ -18,11 +18,6 @@ const ItemCard = ({ product }) => {
                 />
                 <div className={'card_content'}>
                     <h3>{product.name}</h3>
-                    {/*<div>*/}
-                    {/*    <small>{*/}
-                    {/*        product.description*/}
-                    {/*    }</small>*/}
-                    {/*</div>*/}
                     <div className={'price_wrapper'}>
                         <span className={'old_price'}>{product.oldPrice} Kr.</span>
                         <span className={'price'}>{product.price} Kr.</span>
