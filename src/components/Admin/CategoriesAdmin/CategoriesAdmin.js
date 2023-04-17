@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Reorder } from 'framer-motion';
+import { Button, Dialog, DialogContent } from '@mui/material';
+
 import { categoriesReorder, getAllCategories, saveCategoriesOrder } from '../../../store/category';
 import SingleCategoryAdmin from './SingleCategoryAdmin/SingleCategoryAdmin';
-import { Button, Dialog, DialogContent } from '@mui/material';
 import AddEditForm from './AddEditForm/AddEditForm';
 import { hideCategoryEdit, showCategoryEdit } from '../../../store/appearance';
 
@@ -17,7 +18,6 @@ const CategoriesAdmin = () => {
         dispatch(getAllCategories());
     }, [dispatch])
     const { categories, showReorderButton } = useSelector(state => state.categoryStore);
-    console.log(categories);
     return (
         <div>
             <h2>

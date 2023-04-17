@@ -1,9 +1,20 @@
+.single_cat_wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.single_cat_item_wrapper {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
 .admin_cat_picture  {
     position: relative;
     background-repeat: no-repeat;
     background-size: cover;
-    width: 500px;
-    margin-bottom: -7px;
+    width: 640px;
+    height: 90px;
+    background-position: center center;
 }
 .admin_cat_picture h3 {
     position: absolute;
