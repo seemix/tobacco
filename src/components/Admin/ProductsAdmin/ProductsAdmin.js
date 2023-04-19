@@ -1,32 +1,36 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getProductsByCategory } from '../../../store/product';
-import ProductCard from './ProductCard';
 import { Button, Dialog, DialogContent } from '@mui/material';
+
+import ProductCard from './ProductCard';
+import { getProductsByCategory } from '../../../store/product';
 import { hideProductForm, showProductForm } from '../../../store/appearance';
 import ProductForm from './ProductForm';
-
+import { getCategoryById } from '../../../store/category';
 const ProductsAdmin = () => {
     const dispatch = useDispatch();
-    const { id } = useParams();
     const { productFormModal } = useSelector(state => state.appearanceStore);
+    const { id } = useParams();
+
     useEffect(() => {
+        dispatch(getCategoryById(id));
         dispatch(getProductsByCategory(id));
-    }, [id, dispatch]);
-    const { categories } = useSelector(state => state.categoryStore);
-    const currentCat = categories.filter(item => item.id === +id)[0];
+    }, [dispatch, id]);
+    const { currentCategory } = useSelector(state => state.categoryStore);
     const { products } = useSelector(state => state.productStore);
     return (
         <div>
-            <h2>{currentCat?.name} <Button onClick={()=>dispatch(showProductForm())}>+ Add new product </Button></h2>
+            <h2>{currentCategory?.name}
+                <Button onClick={()=>dispatch(showProductForm(currentCategory.id))}>+ Add new product </Button>
+            </h2>
             <Dialog
                 maxWidth={'xs'}
                 open={productFormModal}
                 onClose={() => dispatch(hideProductForm())}
             >
                 <DialogContent style={{ borderRadius: 0 }}>
-                    <ProductForm/>
+                    <ProductForm id={currentCategory?.id}/>
                 </DialogContent>
             </Dialog>
 
@@ -34,7 +38,6 @@ const ProductsAdmin = () => {
                 {products &&
                     products.map(item => <ProductCard key={item.id} product={item}/>)
                 }
-
             </div>
         </div>
     );

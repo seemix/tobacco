@@ -12,6 +12,16 @@ export const getAllCategories = createAsyncThunk(
     }
 );
 
+export const getCategoryById = createAsyncThunk(
+    'categorySlice/GetById',
+    async (id, thunkAPI) => {
+        try {
+            return await categoryService.getById(id);
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e);
+        }
+    }
+);
 export const createCategory = createAsyncThunk(
     'categorySlice/Create',
     async (data, thunkAPI) => {
@@ -63,7 +73,8 @@ export const categorySlice = createSlice({
         error: null,
         categoryForUpdate: null,
         categories: [],
-        showReorderButton: false
+        showReorderButton: false,
+        currentCategory: null
     },
     reducers: {
         categoriesReorder(state, action) {
@@ -129,10 +140,15 @@ export const categorySlice = createSlice({
                 state.error = null;
                 state.categories.forEach(obj => {
                     if (obj.id === action.payload.id) {
-                       obj.name = action.payload.name;
-                       obj.picture = action.payload.picture;
+                        obj.name = action.payload.name;
+                        obj.picture = action.payload.picture;
                     }
                 })
+            })
+            .addCase(getCategoryById.fulfilled, (state, action) => {
+                state.status = 'fulfilled';
+                state.error = null;
+                state.currentCategory = action.payload;
             })
     }
 });

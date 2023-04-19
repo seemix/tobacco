@@ -3,6 +3,7 @@ import { Button, Card, CardMedia } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 import './ItemCard.css';
+import { config } from '../../config/config';
 
 const ItemCard = ({ product }) => {
     return (
@@ -14,7 +15,7 @@ const ItemCard = ({ product }) => {
                     alt={product.picture}
                     width="300"
                     height={'180'}
-                    image={product.picture}
+                    image={`${config.BACKEND_URL}product/${product?.picture}`}
                 />
                 <div className={'card_content'}>
                     <h3>{product.name}</h3>
