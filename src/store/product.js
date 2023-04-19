@@ -44,17 +44,31 @@ export const updateProduct = createAsyncThunk(
     }
 );
 
+export const deleteProduct = createAsyncThunk(
+    'productSlice/DeleteProduct',
+    async (data, thunkAPI) => {
+        try {
+            return await productService.deleteProduct(data);
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e);
+        }
+    }
+);
 export const productSlice = createSlice({
     name: 'productSlice',
     initialState: {
         status: null,
         error: null,
         products: [],
-        productForUpdate: null
+        productForUpdate: null,
+        productForDelete: null
     },
     reducers: {
         setProductForUpdate(state, action) {
             state.productForUpdate = action.payload;
+        },
+        setProductForDelete(state, action) {
+            state.productForDelete = action.payload;
         }
     },
     extraReducers: builder => {
@@ -103,8 +117,11 @@ export const productSlice = createSlice({
                     state.products[index] = { ...action.payload };
                 }
             })
+            .addCase(deleteProduct.fulfilled, state => {
+                state.products = state.products.filter(item => item.id!== state.productForDelete.id);
+            })
     }
 });
-export const { setProductForUpdate } = productSlice.actions;
+export const { setProductForUpdate, setProductForDelete } = productSlice.actions;
 const productStore = productSlice.reducer;
 export default productStore;

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Button, DialogActions, FormControlLabel, Radio, RadioGroup, TextField } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { hideProductForm } from '../../../store/appearance';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import { createProduct, deleteImage, setProductForUpdate, updateProduct } from '../../../store/product';
+
+import { hideProductForm } from '../../../store/appearance';
+import { createProduct, deleteImage, updateProduct } from '../../../store/product';
 import { config } from '../../../config/config';
 
 const ProductForm = ({ id }) => {
@@ -13,14 +14,18 @@ const ProductForm = ({ id }) => {
     const [picSelect, setPicSelect] = useState('none');
     const [confirmDelete, setConfirmDelete] = useState(false);
     const [preview, setPreview] = useState(null);
+
     const dispatch = useDispatch();
     const { productForUpdate } = useSelector(state => state.productStore);
     useEffect(() => {
         if (productForUpdate) setValue(productForUpdate.description);
+    }, []);
+    useEffect(() => {
+        if (productForUpdate?.pictureLink) setPreview(productForUpdate?.pictureLink)
     }, [])
     const handleClose = () => {
         dispatch(hideProductForm());
-        dispatch(setProductForUpdate(null));
+        //dispatch(setProductForUpdate(null));
     }
     const removeImage = () => {
         dispatch(deleteImage(productForUpdate.picture));
@@ -29,6 +34,7 @@ const ProductForm = ({ id }) => {
         setFile(e.target.files[0]);
         setPreview(URL.createObjectURL(e.target.files[0]));
     }
+
     const handleChange = (event) => {
         setPreview(null);
         switch (event.target.value) {
@@ -37,7 +43,7 @@ const ProductForm = ({ id }) => {
                 break;
             case 'link':
                 setPicSelect('link');
-                setValue('link', null);
+                setPreview(productForUpdate?.pictureLink);
                 break;
             case 'upload':
                 setPicSelect('upload');
@@ -46,7 +52,6 @@ const ProductForm = ({ id }) => {
     const saveForm = (e) => {
         e.preventDefault();
         const formData = new FormData();
-        formData.append('id', productForUpdate.id)
         formData.append('categoryId', id)
         formData.append('name', e.target.name.value);
         formData.append('description', value);
@@ -54,9 +59,9 @@ const ProductForm = ({ id }) => {
         formData.append('price', e.target.price.value);
         if (picSelect === 'link') formData.append('pictureLink', e.target.pictureLink.value);
         formData.append('image', file);
-        if(productForUpdate) {
+        if (productForUpdate) {
+            formData.append('id', productForUpdate.id)
             dispatch(updateProduct(formData));
-          //  console.log(formData);
         } else {
             dispatch(createProduct(formData));
         }
@@ -95,6 +100,7 @@ const ProductForm = ({ id }) => {
                         {!productForUpdate?.picture && <>
                             <RadioGroup row name={'pic_selector'}
                                         onChange={handleChange}
+                                        defaultValue={productForUpdate?.pictureLink ? 'link' : 'none'}
                             >
                                 <FormControlLabel value={'none'} control={<Radio/>} label={'none'}/>
                                 <FormControlLabel value={'link'} control={<Radio/>} label={'link'}/>
@@ -103,10 +109,8 @@ const ProductForm = ({ id }) => {
                         </>
                         }
                     </div>
-
-
                     {
-                        picSelect === 'link' &&
+                        (picSelect === 'link') &&
                         <TextField size={'small'} className={'TextField-without-border-radius'} fullWidth
                                    name={'pictureLink'}
                                    defaultValue={productForUpdate?.pictureLink}
@@ -119,7 +123,7 @@ const ProductForm = ({ id }) => {
 
                     }
                     {productForUpdate?.picture && !confirmDelete && <>
-                        <Button fullWidth onClick={() => setConfirmDelete(true) }>Remove image</Button></>
+                        <Button fullWidth onClick={() => setConfirmDelete(true)}>Remove image</Button></>
                     }
 
                     {picSelect === 'upload' &&
