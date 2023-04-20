@@ -1,11 +1,13 @@
 import React from 'react';
 import { Button, Card, CardMedia } from '@mui/material';
+import { Link } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 import './ItemCard.css';
-import { config } from '../../config/config';
+import { showPicture } from '../../services/show-picture.service';
 
 const ItemCard = ({ product }) => {
+    const img = showPicture(product);
     return (
         <div className={'card_wrapper'}>
             <Card>
@@ -15,15 +17,21 @@ const ItemCard = ({ product }) => {
                     alt={product.picture}
                     width="300"
                     height={'180'}
-                    image={`${config.BACKEND_URL}product/${product?.picture}`}
+                    image={img}
                 />
                 <div className={'card_content'}>
                     <h3>{product.name}</h3>
                     <div className={'price_wrapper'}>
-                        <span className={'old_price'}>{product.oldPrice} Kr.</span>
-                        <span className={'price'}>{product.price} Kr.</span>
+                        {(product.oldPrice !== 0) &&
+                            <span className={'old_price'}>{product.oldPrice} Kr.</span>
+                        }
+                        <span
+                            className={product.oldPrice === 0 ? 'price standard_price' : 'price'}>{product.price} Kr.
+                        </span>
                     </div>
-                    <Button variant={'outlined'}>Read more</Button>
+                    <Link to={`/product/${product.id}`}>
+                        <Button variant={'outlined'} fullWidth>Read more</Button>
+                    </Link>
                     <Button variant={'contained'}>
                         <ShoppingCartIcon/> Add to cart</Button>
                 </div>

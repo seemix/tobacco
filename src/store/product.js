@@ -11,6 +11,17 @@ export const getProductsByCategory = createAsyncThunk(
         }
     }
 );
+
+export const getProductById = createAsyncThunk(
+    'productSlice/GetById',
+    async (id, thunkAPI) => {
+        try {
+            return productService.getById(id);
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e);
+        }
+    }
+);
 export const createProduct = createAsyncThunk(
     'productSlice/CreateProduct',
     async (data, thunkAPI) => {
@@ -60,6 +71,7 @@ export const productSlice = createSlice({
         status: null,
         error: null,
         products: [],
+        singleProduct: null,
         productForUpdate: null,
         productForDelete: null
     },
@@ -93,7 +105,7 @@ export const productSlice = createSlice({
             .addCase(createProduct.fulfilled, (state, action) => {
                 state.status = 'fulfilled';
                 state.error = null;
-                state.products.push(action.payload);
+                state.products = [action.payload, ...state.products];
             })
             .addCase(createProduct.rejected, (state, action) => {
                 state.status = 'error';
@@ -118,7 +130,10 @@ export const productSlice = createSlice({
                 }
             })
             .addCase(deleteProduct.fulfilled, state => {
-                state.products = state.products.filter(item => item.id!== state.productForDelete.id);
+                state.products = state.products.filter(item => item.id !== state.productForDelete.id);
+            })
+            .addCase(getProductById.fulfilled, (state, action) => {
+                state.singleProduct = action.payload;
             })
     }
 });
