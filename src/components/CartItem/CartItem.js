@@ -1,25 +1,31 @@
 import React, { useState } from 'react';
 import { Button, Card, TextField } from '@mui/material';
 import './CartItem.css';
+import { showPicture } from '../../services/show-picture.service';
+import { useDispatch } from 'react-redux';
+import { removeItem } from '../../store/order';
 
-const CartItem = () => {
+const CartItem = ({ product }) => {
     const [count, setCount] = useState(1);
+    const dispatch = useDispatch();
     const reduceCount = () => {
         if (count > 1) setCount(count => count - 1);
     }
+    const img = showPicture(product);
+
     return (
         <div>
             <Card className={'cart_card'}>
-                <div style={{ textAlign: 'center' }}><h4>Item description & name</h4></div>
+                <div style={{ textAlign: 'center' }}><h4>{product.name}</h4></div>
                 <div className={'cart_item_wrapper'}>
                     <div>
                         <div><img
-                            src={'https://cdn-prod.medicalnewstoday.com/content/images/articles/322/322685/hookah-smoking.jpg'}
+                            src={img}
                             alt={'img'}/>
                         </div>
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-                        <div style={{ textAlign: 'center' }}><big><b>500Kr.</b></big></div>
+                        <div style={{ textAlign: 'center' }}><big><b>{product.price} Kr.</b></big></div>
                         <div>
                             <Button onClick={reduceCount}><big>-</big></Button>
                             <TextField size={'small'} style={{ width: '44px' }}
@@ -27,7 +33,7 @@ const CartItem = () => {
                             <Button onClick={() => setCount(count => count + 1)}><big>+</big></Button>
                         </div>
                         <div style={{ marginLeft: 'auto' }}>
-                            <Button fullWidth>remove</Button>
+                            <Button fullWidth onClick={() => dispatch(removeItem(product))}>remove</Button>
                         </div>
                     </div>
                 </div>

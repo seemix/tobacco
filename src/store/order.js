@@ -14,10 +14,17 @@ export const orderSlice = createSlice({
         addProductToCart(state, action) {
             state.products.push(action.payload);
             state.total = state.total + action.payload.price * action.payload.count;
+        },
+        removeItem(state, action) {
+            state.total -= action.payload.price;
+            state.products = state.products.filter(item => item.id !== action.payload.id);
+        },
+        removeAllItems(state) {
+            state.products = [];
         }
     },
     extraReducers: {}
 });
-export const { addProductToCart } = orderSlice.actions;
+export const { addProductToCart, removeItem, removeAllItems } = orderSlice.actions;
 const orderStore = orderSlice.reducer;
 export default orderStore;
