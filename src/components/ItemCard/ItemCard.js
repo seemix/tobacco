@@ -5,8 +5,11 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 import './ItemCard.css';
 import { showPicture } from '../../services/show-picture.service';
+import { useDispatch } from 'react-redux';
+import { addProductToCart } from '../../store/order';
 
 const ItemCard = ({ product }) => {
+    const dispatch = useDispatch();
     const img = showPicture(product);
     return (
         <div className={'card_wrapper'}>
@@ -32,7 +35,7 @@ const ItemCard = ({ product }) => {
                     <Link to={`/product/${product.id}`}>
                         <Button variant={'outlined'} fullWidth>Read more</Button>
                     </Link>
-                    <Button variant={'contained'}>
+                    <Button variant={'contained'} onClick={() => dispatch(addProductToCart({ count: 1, ...product }))}>
                         <ShoppingCartIcon/> Add to cart</Button>
                 </div>
             </Card>

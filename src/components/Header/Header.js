@@ -16,6 +16,7 @@ import { getAllCategories } from '../../store/category';
 import Cart from '../Cart/Cart';
 
 const Header = () => {
+    const { products } = useSelector(state => state.orderStore);
     const { openedMenu, cart, showElement, language, filteredLang } = useSelector(state => state.appearanceStore);
     const { categories } = useSelector(state => state.categoryStore);
     const dispatch = useDispatch();
@@ -46,8 +47,10 @@ const Header = () => {
                     <li><a href="#" className={'menu_parent'}>Products <i className={'arrow_right'}></i> </a>
                         <ul>
                             {categories &&
-                                categories.map(cat => <div key={cat.id}><li><NavLink
-                                    to={`category/${cat.id}`}>{cat.name}</NavLink></li></div>)
+                                categories.map(cat => <div key={cat.id}>
+                                    <li><NavLink
+                                        to={`category/${cat.id}`}>{cat.name}</NavLink></li>
+                                </div>)
                             }
 
                         </ul>
@@ -70,7 +73,7 @@ const Header = () => {
             </nav>
             <div className={'icons_wrapper'}>
                 <div onClick={() => dispatch(showCart())} style={{ cursor: 'pointer' }}>
-                    <Badge badgeContent={2} color={'secondary'} style={{ top: '3px', zIndex: -1 }}>
+                    <Badge badgeContent={products.length} color={'secondary'} style={{ top: '3px', zIndex: -1 }}>
                         <CartIcon/>
                     </Badge>
                 </div>
