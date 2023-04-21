@@ -1,13 +1,15 @@
+import { Button } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
 import React, { useState } from 'react';
+import CloseIcon from '@mui/icons-material/Close';
 
 import './Cart.css';
-import { useDispatch, useSelector } from 'react-redux';
-import CloseIcon from '@mui/icons-material/Close';
 import { hideCart, showCart } from '../../store/appearance';
-import { Button } from '@mui/material';
 import CartItem from '../CartItem/CartItem';
 import { removeAllItems } from '../../store/order';
 import CartIcon from '../Header/CartIcon';
+import { Link } from 'react-router-dom';
+import { config } from '../../config/config';
 
 const Cart = () => {
     const { cart } = useSelector(state => state.appearanceStore);
@@ -39,21 +41,23 @@ const Cart = () => {
                     {
                         products.map(item => <CartItem key={item.id} product={item}/>)
                     }
-                    {products.length > 0 && !emptyCart &&
+                    <div className={'remove_all_wrapper'}>
+                        {products.length > 0 && !emptyCart &&
                         <Button fullWidth onClick={() => setEmptyCart(true)}>remove all</Button>
                     }
-                    {emptyCart && <>
-                        Remove all items?
-                        <Button onClick={() => setEmptyCart(false)}>Cancel</Button>
-                        <Button onClick={confirmEmptyCart}>Confirm</Button>
-                    </>}
+                        {emptyCart && <>
+                            <span style={{marginTop: '5px'}}>Remove all items?</span>
+                            <Button onClick={() => setEmptyCart(false)}>Cancel</Button>
+                            <Button onClick={confirmEmptyCart}>Confirm</Button>
+                        </>}
+                    </div>
                 </div>
             </div>
             <div className={'bottom_wrapper'}>
                 <div className={'total_wrapper'}>
                     {products.length > 0 &&
                         <big>
-                            Total price is: <span className={'price'}>{total} Kr.</span>
+                            Total price is: <span className={'price'}>{total} {config.CURRENCY}</span>
                         </big>
                     }
                 </div>
@@ -63,9 +67,13 @@ const Cart = () => {
                             shop</Button>
                     }
                     {products.length > 0 &&
-                        <Button variant={'contained'} style={{ padding: '5px 50px' }}>
-                            Checkout
-                        </Button>
+                        <>
+                            <Link to={'checkout'} onClick={() => dispatch(showCart())}>
+                                <Button variant={'contained'} style={{ padding: '5px 50px' }}>
+                                    Checkout
+                                </Button>
+                            </Link>
+                        </>
                     }
                 </div>
             </div>

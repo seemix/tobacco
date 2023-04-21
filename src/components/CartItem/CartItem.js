@@ -14,16 +14,15 @@ const CartItem = ({ product }) => {
     return (
         <div>
             <Card className={'cart_card'}>
-                <div style={{ textAlign: 'center' }}><h4>{product.name}</h4></div>
+                <div className={'center_text'}>
+                    <h4>{product.name}</h4>
+                </div>
                 <div className={'cart_item_wrapper'}>
                     <div>
-                        <div><img
-                            src={img}
-                            alt={'img'}/>
-                        </div>
+                        <div className={'cart_item_wrapper_im'}  style={{ backgroundImage: `url(${img})`}}></div>
                     </div>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-                        <div style={{ textAlign: 'center' }}>
+                    <div className={'price_count_wrapper'}>
+                        <div className={'center_text'}>
                             <big><b>{product.price * product.count} {config.CURRENCY}</b></big></div>
                         <div>
                             <Button onClick={() => dispatch(reduceCount(product))}><big>-</big></Button>
