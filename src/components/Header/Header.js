@@ -25,7 +25,7 @@ const Header = () => {
     }, [dispatch]);
     return (
         <div className={'header_wrapper'}>
-            <Backdrop open={cart}/>
+            <Backdrop open={cart} onClick={() => dispatch(showCart())}/>
             <div className={'burger_icon'}>
                 {
                     !openedMenu ? <MenuIcon onClick={() => dispatch(openMenu())} fontSize={'large'}
@@ -74,7 +74,7 @@ const Header = () => {
             <div className={'icons_wrapper'}>
                 <div onClick={() => dispatch(showCart())} style={{ cursor: 'pointer' }}>
                     <Badge badgeContent={products.length} color={'secondary'} style={{ top: '3px', zIndex: -1 }}>
-                        <CartIcon/>
+                        <CartIcon size={2}/>
                     </Badge>
                 </div>
                 <div className={!showElement ? 'hide_element' : 'show_element'}><SearchBar setShow={showElement}/></div>

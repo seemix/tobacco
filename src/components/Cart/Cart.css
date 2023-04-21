@@ -65,7 +65,26 @@
 .total_wrapper {
     text-align: center;
 }
-
+.empty_wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.empty_cart {
+    margin-top: 50px;
+    text-align: center;
+    position: relative;
+}
+.empty_cart_overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(249,249,249, 0.5);
+    width: 100%;
+    height: 100%;
+}
 @media screen and (max-width: 460px) {
 
     .cart_wrapper {

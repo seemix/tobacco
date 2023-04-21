@@ -21,10 +21,23 @@ export const orderSlice = createSlice({
         },
         removeAllItems(state) {
             state.products = [];
+            state.total = 0;
+        },
+        reduceCount(state, action) {
+            const index = state.products.findIndex(obj => obj.id === action.payload.id);
+            if (state.products[index].count > 1) {
+                state.products[index].count -= 1;
+                state.total -= state.products[index].price;
+            }
+        },
+        incrementCount(state, action) {
+            const index = state.products.findIndex(obj => obj.id === action.payload.id);
+            state.products[index].count += 1;
+            state.total += state.products[index].price;
         }
     },
     extraReducers: {}
 });
-export const { addProductToCart, removeItem, removeAllItems } = orderSlice.actions;
+export const { addProductToCart, removeItem, removeAllItems, incrementCount, reduceCount } = orderSlice.actions;
 const orderStore = orderSlice.reducer;
 export default orderStore;

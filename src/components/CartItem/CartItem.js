@@ -1,18 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, Card, TextField } from '@mui/material';
-import './CartItem.css';
-import { showPicture } from '../../services/show-picture.service';
 import { useDispatch } from 'react-redux';
-import { removeItem } from '../../store/order';
+
+import './CartItem.css';
+import { config } from '../../config/config';
+import { showPicture } from '../../services/show-picture.service';
+import { incrementCount, reduceCount, removeItem } from '../../store/order';
 
 const CartItem = ({ product }) => {
-    const [count, setCount] = useState(1);
     const dispatch = useDispatch();
-    const reduceCount = () => {
-        if (count > 1) setCount(count => count - 1);
-    }
-    const img = showPicture(product);
-
+    let img;
+    if (product) img = showPicture(product);
     return (
         <div>
             <Card className={'cart_card'}>
@@ -25,12 +23,13 @@ const CartItem = ({ product }) => {
                         </div>
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-                        <div style={{ textAlign: 'center' }}><big><b>{product.price} Kr.</b></big></div>
+                        <div style={{ textAlign: 'center' }}>
+                            <big><b>{product.price * product.count} {config.CURRENCY}</b></big></div>
                         <div>
-                            <Button onClick={reduceCount}><big>-</big></Button>
+                            <Button onClick={() => dispatch(reduceCount(product))}><big>-</big></Button>
                             <TextField size={'small'} style={{ width: '44px' }}
-                                       className={'TextField-without-border-radius'} value={count}/>
-                            <Button onClick={() => setCount(count => count + 1)}><big>+</big></Button>
+                                       className={'TextField-without-border-radius'} value={product.count || 1}/>
+                            <Button onClick={() => dispatch(incrementCount(product))}><big>+</big></Button>
                         </div>
                         <div style={{ marginLeft: 'auto' }}>
                             <Button fullWidth onClick={() => dispatch(removeItem(product))}>remove</Button>
