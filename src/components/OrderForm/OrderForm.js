@@ -57,7 +57,12 @@ const OrderForm = () => {
                             <TextField
                                 className={'TextField-without-border-radius'}
                                 label={'surname'}
-                                {...register('surname')}
+                                {...register('surname',{
+                                    required: 'This field is requered', pattern: {
+                                        value: '',
+                                        message: 'Bad format'
+                                    }
+                                })}
                             />
                             <TextField
                                 className={'TextField-without-border-radius'}
