@@ -139,7 +139,7 @@ export const categorySlice = createSlice({
                 state.status = 'fulfilled';
                 state.error = null;
                 state.categories.forEach(obj => {
-                    if (obj.id === action.payload.id) {
+                    if (obj._id === action.payload._id) {
                         obj.name = action.payload.name;
                         obj.picture = action.payload.picture;
                     }

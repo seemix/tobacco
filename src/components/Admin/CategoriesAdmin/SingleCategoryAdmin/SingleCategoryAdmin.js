@@ -20,7 +20,7 @@ const SingleCategoryAdmin = ({ category }) => {
             <Card style={{ margin: '15px' }}>
                 <div className={'single_cat_item_wrapper'}>
                     <div className={'admin_cat_picture'}
-                         style={{ backgroundImage: `url(${config.BACKEND_URL}category/${category?.picture})` }}>
+                         style={{ backgroundImage: `url(${config.BACKEND_URL}/category/${category?.picture})` }}>
                         <div className={'image_overlay'}></div>
                         <h3>{category?.name.toUpperCase()}</h3>
                     </div>

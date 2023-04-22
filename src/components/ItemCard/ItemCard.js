@@ -45,7 +45,7 @@ const ItemCard = ({ product }) => {
                             className={product.oldPrice === 0 ? 'price standard_price' : 'price'}>{product.price} {config.CURRENCY}
                         </span>
                     </div>
-                    <Link to={`/product/${product.id}`}>
+                    <Link to={`/product/${product._id}`}>
                         <Button variant={'outlined'} fullWidth>Read more</Button>
                     </Link>
                     {!showButton && <>

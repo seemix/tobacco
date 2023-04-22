@@ -8,7 +8,7 @@ import { hideProductForm } from '../../../store/appearance';
 import { createProduct, deleteImage, updateProduct } from '../../../store/product';
 import { config } from '../../../config/config';
 
-const ProductForm = ({ id }) => {
+const ProductForm = ({ _id }) => {
     const [value, setValue] = useState('');
     const [file, setFile] = useState(null);
     const [picSelect, setPicSelect] = useState('none');
@@ -52,7 +52,7 @@ const ProductForm = ({ id }) => {
     const saveForm = (e) => {
         e.preventDefault();
         const formData = new FormData();
-        formData.append('categoryId', id)
+        formData.append('categoryId', _id)
         formData.append('name', e.target.name.value);
         formData.append('description', value);
         formData.append('oldPrice', e.target.oldPrice.value);

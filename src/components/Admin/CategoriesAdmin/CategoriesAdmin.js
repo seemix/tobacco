@@ -39,7 +39,7 @@ const CategoriesAdmin = () => {
             <Reorder.Group values={categories} onReorder={(newOrder) => reOrder(newOrder)} as={'ol'}>
                 {categories &&
                     categories.map((category, index) => <Reorder.Item value={category}
-                                                                      key={category.id}
+                                                                      key={category._id}
                                                                       whileDrag={{ scale: 1.05 }}>
                         <SingleCategoryAdmin category={category} key={index}/></Reorder.Item>)
                 }

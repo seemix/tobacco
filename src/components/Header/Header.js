@@ -47,9 +47,9 @@ const Header = () => {
                     <li><a href="#" className={'menu_parent'}>Products <i className={'arrow_right'}></i> </a>
                         <ul>
                             {categories &&
-                                categories.map(cat => <div key={cat.id}>
+                                categories.map(cat => <div key={cat._id}>
                                     <li><NavLink
-                                        to={`category/${cat.id}`}>{cat.name}</NavLink></li>
+                                        to={`category/${cat._id}`}>{cat.name}</NavLink></li>
                                 </div>)
                             }
 

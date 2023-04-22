@@ -13,13 +13,13 @@ const Category = () => {
         dispatch(getProductsByCategory(id));
     }, [id, dispatch]);
     const { categories } = useSelector(state => state.categoryStore);
-    const currentCat = categories.filter(item => item.id === +id)[0];
+    const currentCat = categories.filter(item => item._id === id)[0];
     const { products } = useSelector(state => state.productStore);
 
     return (
-        <div style={{ marginTop: '70px' }}>
+        <div style={{marginTop: '80px'}}>
             <div className={'image_container'}
-                 style={{ backgroundImage: `url(${config.BACKEND_URL}category/${currentCat?.picture})` }}>
+                 style={{ backgroundImage: `url(${config.BACKEND_URL}/category/${currentCat?.picture})` }}>
                 <div className={'image_overlay'}></div>
                 <h2>{currentCat?.name.toUpperCase()}</h2>
             </div>

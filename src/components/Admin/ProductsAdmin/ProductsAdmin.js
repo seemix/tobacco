@@ -8,6 +8,7 @@ import { getProductsByCategory } from '../../../store/product';
 import { hideProductForm, showProductForm } from '../../../store/appearance';
 import ProductForm from './ProductForm';
 import { getCategoryById } from '../../../store/category';
+
 const ProductsAdmin = () => {
     const dispatch = useDispatch();
     const { productFormModal } = useSelector(state => state.appearanceStore);
@@ -22,7 +23,7 @@ const ProductsAdmin = () => {
     return (
         <div>
             <h2>{currentCategory?.name}
-                <Button onClick={()=>dispatch(showProductForm(currentCategory.id))}>+ Add new product </Button>
+                <Button onClick={() => dispatch(showProductForm())}>+ Add new product </Button>
             </h2>
             <Dialog
                 maxWidth={'xs'}
@@ -30,7 +31,7 @@ const ProductsAdmin = () => {
                 onClose={() => dispatch(hideProductForm())}
             >
                 <DialogContent style={{ borderRadius: 0 }}>
-                    <ProductForm id={currentCategory?.id}/>
+                    <ProductForm _id={currentCategory?._id}/>
                 </DialogContent>
             </Dialog>
 
