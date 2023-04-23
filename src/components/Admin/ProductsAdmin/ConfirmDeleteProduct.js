@@ -8,7 +8,7 @@ const ConfirmDeleteProduct = () => {
     const dispatch = useDispatch();
     const { productForDelete } = useSelector(state => state.productStore);
     const confirmDelete = () => {
-        dispatch(deleteProduct({id: productForDelete.id, fileName: productForDelete.picture}));
+        dispatch(deleteProduct({id: productForDelete._id, fileName: productForDelete.picture}));
         dispatch(hideProductDeleteModal());
       //  dispatch(setProductForDelete(null));
     }

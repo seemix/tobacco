@@ -17,21 +17,22 @@ export const orderSlice = createSlice({
         },
         removeItem(state, action) {
             state.total -= action.payload.price;
-            state.products = state.products.filter(item => item.id !== action.payload.id);
+            state.total -= (action.payload.price * action.payload.count);
+            state.products = state.products.filter(item => item._id !== action.payload._id);
         },
         removeAllItems(state) {
             state.products = [];
             state.total = 0;
         },
         reduceCount(state, action) {
-            const index = state.products.findIndex(obj => obj.id === action.payload.id);
+            const index = state.products.findIndex(obj => obj._id === action.payload._id);
             if (state.products[index].count > 1) {
                 state.products[index].count -= 1;
                 state.total -= state.products[index].price;
             }
         },
         incrementCount(state, action) {
-            const index = state.products.findIndex(obj => obj.id === action.payload.id);
+            const index = state.products.findIndex(obj => obj._id === action.payload._id);
             state.products[index].count += 1;
             state.total += state.products[index].price;
         }

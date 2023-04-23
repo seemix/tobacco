@@ -37,7 +37,7 @@ const ItemDetails = () => {
             {singleProduct &&
                 <div>
                     <div className={'path'}>Products /
-                        <Link to={`../../category/${singleProduct.categoryId}`}>  {singleProduct.category?.name} </Link>
+                        <Link to={`../../category/${singleProduct.category._id}`}>  {singleProduct.category?.name} </Link>
                         / {singleProduct.name}
                     </div>
                     <Card className={'card_details'}>

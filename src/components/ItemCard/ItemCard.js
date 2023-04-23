@@ -16,7 +16,7 @@ const ItemCard = ({ product }) => {
     const dispatch = useDispatch();
     const { products } = useSelector(state => state.orderStore);
     useEffect(() => {
-        const inCart = products.findIndex(obj => obj.id === product.id);
+        const inCart = products.findIndex(obj => obj._id === product._id);
         if (inCart !== -1) {
             setShowButton(true);
         } else {

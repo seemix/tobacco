@@ -5,7 +5,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
 import { hideProductForm } from '../../../store/appearance';
-import { createProduct, deleteImage, updateProduct } from '../../../store/product';
+import { createProduct, deleteImage, setProductForUpdate, updateProduct } from '../../../store/product';
 import { config } from '../../../config/config';
 
 const ProductForm = ({ _id }) => {
@@ -18,14 +18,18 @@ const ProductForm = ({ _id }) => {
     const dispatch = useDispatch();
     const { productForUpdate } = useSelector(state => state.productStore);
     useEffect(() => {
-        if (productForUpdate) setValue(productForUpdate.description);
-    }, []);
+        if (productForUpdate) {
+            setValue(productForUpdate.description);
+            setValue(productForUpdate.description);
+        }
+
+    }, [productForUpdate]);
     useEffect(() => {
         if (productForUpdate?.pictureLink) setPreview(productForUpdate?.pictureLink)
     }, [])
     const handleClose = () => {
         dispatch(hideProductForm());
-        //dispatch(setProductForUpdate(null));
+        dispatch(setProductForUpdate(null));
     }
     const removeImage = () => {
         dispatch(deleteImage(productForUpdate.picture));
@@ -52,7 +56,7 @@ const ProductForm = ({ _id }) => {
     const saveForm = (e) => {
         e.preventDefault();
         const formData = new FormData();
-        formData.append('categoryId', _id)
+        formData.append('category', _id)
         formData.append('name', e.target.name.value);
         formData.append('description', value);
         formData.append('oldPrice', e.target.oldPrice.value);
@@ -60,7 +64,7 @@ const ProductForm = ({ _id }) => {
         if (picSelect === 'link') formData.append('pictureLink', e.target.pictureLink.value);
         formData.append('image', file);
         if (productForUpdate) {
-            formData.append('id', productForUpdate.id)
+            formData.append('id', productForUpdate._id)
             dispatch(updateProduct(formData));
         } else {
             dispatch(createProduct(formData));
@@ -119,7 +123,7 @@ const ProductForm = ({ _id }) => {
                         />
                     }
                     {productForUpdate?.picture &&
-                        <img src={`${config.BACKEND_URL}products/${productForUpdate.picture}`} width={350} alt={'pic'}/>
+                        <img src={`${config.BACKEND_URL}/product/image/${productForUpdate.picture}`} width={350} alt={'pic'}/>
 
                     }
                     {productForUpdate?.picture && !confirmDelete && <>

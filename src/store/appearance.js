@@ -11,7 +11,8 @@ export const appearanceSlice = createSlice({
         cart: false,
         categoryEditModal: false,
         productFormModal: false,
-        productDeleteModal: false
+        productDeleteModal: false,
+        categoryDeleteModal: false
     },
     reducers: {
         showHideItem(state) {
@@ -53,6 +54,12 @@ export const appearanceSlice = createSlice({
         },
         hideProductDeleteModal(state) {
             state.productDeleteModal = false;
+        },
+        showCategoryDeleteModal(state) {
+            state.categoryDeleteModal = true;
+        },
+        hideCategoryDeleteModal(state) {
+            state.categoryDeleteModal = false;
         }
     }
 });
@@ -69,7 +76,9 @@ export const {
     showProductForm,
     hideProductForm,
     showProductDeleteModal,
-    hideProductDeleteModal
+    hideProductDeleteModal,
+    showCategoryDeleteModal,
+    hideCategoryDeleteModal
 } = appearanceSlice.actions;
 export const appearanceStore = appearanceSlice.reducer;
 export default appearanceStore;

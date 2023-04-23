@@ -6,14 +6,21 @@ import { useDispatch } from 'react-redux';
 
 import './SingleCategoryAdmin.css';
 import { config } from '../../../../config/config';
-import { showCategoryEdit } from '../../../../store/appearance';
-import { setCategoryForUpdate } from '../../../../store/category';
+import {
+    showCategoryDeleteModal,
+    showCategoryEdit
+} from '../../../../store/appearance';
+import { setCategoryForDelete, setCategoryForUpdate } from '../../../../store/category';
 
 const SingleCategoryAdmin = ({ category }) => {
     const dispatch = useDispatch();
     const categoryEdit = (category) => {
         dispatch(setCategoryForUpdate(category));
         dispatch(showCategoryEdit(true));
+    }
+    const setDelete = () => {
+        dispatch(setCategoryForDelete(category));
+        dispatch(showCategoryDeleteModal());
     }
     return (
         <div className={'single_cat_wrapper'}>
@@ -28,7 +35,7 @@ const SingleCategoryAdmin = ({ category }) => {
                         <Button onClick={() => categoryEdit(category)}><EditIcon/></Button>
                     </div>
                     <div>
-                        <Button><DeleteForeverIcon/></Button>
+                        <Button onClick={() => setDelete(category)}><DeleteForeverIcon/></Button>
                     </div>
                 </div>
             </Card>

@@ -24,7 +24,7 @@ const ProductCard = ({ product }) => {
     }
     const editProduct = () => {
         dispatch(setProductForUpdate(product));
-        dispatch(showProductForm(product.categoryId));
+        dispatch(showProductForm(product.category));
     }
     const { productDeleteModal } = useSelector(state => state.appearanceStore);
     return (

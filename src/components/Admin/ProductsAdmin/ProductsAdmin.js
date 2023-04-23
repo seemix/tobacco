@@ -34,10 +34,9 @@ const ProductsAdmin = () => {
                     <ProductForm _id={currentCategory?._id}/>
                 </DialogContent>
             </Dialog>
-
             <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
                 {products &&
-                    products.map(item => <ProductCard key={item.id} product={item}/>)
+                    products.map(item => <ProductCard key={item._id} product={item}/>)
                 }
             </div>
         </div>
