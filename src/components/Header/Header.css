@@ -16,7 +16,7 @@
     display: flex;
     justify-content: space-evenly;
     gap: 15px;
-    color: rgb(109,109,109);
+    color: rgb(109, 109, 109);
 }
 
 .logo {
@@ -107,11 +107,13 @@
     transform: rotate(45deg);
     transition: 0.2s all ease-in-out;
 }
+
 .menu_icon {
     color: rgba(109, 109, 109);
     cursor: pointer;
     margin-top: 5px;
 }
+
 .menu_icon svg:hover {
     fill: #b17862;
 }
@@ -124,7 +126,7 @@
 .icons_wrapper {
     display: flex;
     gap: 30px;
-    width: 300px;
+    width: calc(200px + (280 - 200) * ((100vw - 720px) / (1920 - 720)));
 }
 
 
@@ -214,6 +216,7 @@
         padding: 5px 0;
         box-sizing: border-box;
     }
+
     .menu_wrapper ul li:hover > ul,
     .menu_wrapper ul li:focus-within > ul {
         opacity: 1;
