@@ -1,14 +1,40 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { orderService } from '../services/order.service';
 
+export const createOrder = createAsyncThunk(
+    'orderSlice/CreateOrder',
+    async (data, thunkAPI) => {
+        try {
+            return orderService.createOrder(data);
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e);
+        }
+    }
+);
+
+export const getAllOrders = createAsyncThunk(
+    'orderSlice/GetAll',
+    async (_, thunkAPI) => {
+        try {
+            return orderService.getAllOrders();
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e);
+        }
+    }
+);
 export const orderSlice = createSlice({
     name: 'orderSlice',
     initialState: {
+        createdOrder: null,
+        status: null,
+        error: null,
         total: 0,
         products: [],
         customerName: null,
         customerSurname: null,
         customerPhone: null,
-        address: null
+        address: null,
+        orders: null
     },
     reducers: {
         addProductToCart(state, action) {
@@ -36,7 +62,17 @@ export const orderSlice = createSlice({
             state.total += state.products[index].price;
         }
     },
-    extraReducers: {}
+    extraReducers: builder =>  {
+        builder
+            .addCase(createOrder.fulfilled, (state, action) => {
+                state.status = 'fulfilled';
+                state.createdOrder = action.payload;
+                state.products = [];
+            })
+            .addCase(getAllOrders.fulfilled, (state, action) => {
+                state.response = action.payload;
+            })
+    }
 });
 export const { addProductToCart, removeItem, removeAllItems, incrementCount, reduceCount } = orderSlice.actions;
 const orderStore = orderSlice.reducer;

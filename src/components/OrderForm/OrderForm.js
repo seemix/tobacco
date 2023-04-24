@@ -6,21 +6,28 @@ import { config } from '../../config/config';
 import { showCart } from '../../store/appearance';
 import { Navigate } from 'react-router-dom';
 import './OrderForm.css';
+import { createOrder } from '../../store/order';
 
 const OrderForm = () => {
     const [showAddress, setShowAddress] = useState(false);
     const { handleSubmit, register, formState: { errors } } = useForm();
-    const { products, total } = useSelector(state => state.orderStore);
+    const { products, total, status } = useSelector(state => state.orderStore);
     const dispatch = useDispatch();
+
     const setAddress = () => {
         setShowAddress(!showAddress);
     }
     const handleForm = (data) => {
-        console.log(data);
+        const orderedProducts = products.map(item => {
+            return { product: item._id, count: item.count }
+        });
+        const newOrder = { ...data, products: orderedProducts, total: total }
+        if(showAddress) newOrder.shipping = true;
+        dispatch(createOrder(newOrder));
     }
-
     return (
         <div className={'main_container'}>
+            {status === 'fulfilled' && <Navigate to={'../completed'}/>}
             <h2>Checkout your order</h2>
             <div className={'checkout_wrap'}>
                 {products.length === 0 && <Navigate to={'/'}/>}
@@ -28,7 +35,7 @@ const OrderForm = () => {
                     <Card className={'checkout_card'}>
                         <h3>Your order</h3>
                         {
-                            products.map(item => <div key={item.id}>
+                            products.map(item => <div key={item._id}>
                                 <div><i>{item.name} x {item.count}</i></div>
                                 <p style={{ textAlign: 'right' }}>{item.price * item.count} {config.CURRENCY}</p>
                             </div>)
@@ -41,47 +48,47 @@ const OrderForm = () => {
                     <Button fullWidth onClick={() => dispatch(showCart())}>Edit order</Button>
                 </div>
                 <div>
-                    <h3 style={{marginBottom: '20px'}}>Fill the form to finish yor order</h3>
+                    <h3 style={{ marginBottom: '20px' }}>Fill the form to finish yor order</h3>
                     <form onSubmit={handleSubmit(handleForm)}>
                         <div className={'checkout_form_wrapper'}>
                             <TextField
                                 className={'TextField-without-border-radius'}
                                 label={'name'}
-                                {...register('name', {
+                                {...register('customerName', {
                                     required: 'This field is required', pattern: {
                                         value: /^[A-Z][a-z]{1,20}$/,
                                         message: 'Bad format'
                                     }
                                 })}
-                                error={!!errors.name}
-                                helperText={errors?.name ? errors.name.message : null}
+                                error={!!errors.customerName}
+                                helperText={errors?.customerName ? errors.customerName.message : null}
                             />
                             <TextField
                                 className={'TextField-without-border-radius'}
                                 label={'surname'}
-                                {...register('surname', {
+                                {...register('customerSurname', {
                                     required: 'This field is requered', pattern: {
                                         value: /^[A-Z][a-z]{1,30}(-[A-Z][a-z]{1,30})?$/,
                                         message: 'Bad format'
                                     }
                                 })}
-                                error={!!errors.surname}
-                                helperText={errors?.surname ? errors.surname.message : null}
+                                error={!!errors.customerSurname}
+                                helperText={errors?.customerSurname ? errors.customerSurname.message : null}
                             />
                             <TextField
                                 className={'TextField-without-border-radius'}
                                 label={'phone number'}
-                                {...register('phone',{
+                                {...register('customerPhone', {
                                     required: 'This field is required', pattern: {
                                         value: /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/,
                                         message: 'Bad format!'
                                     }
                                 })}
-                                error={!!errors.phone}
-                                helperText={errors?.phone ? errors.phone.message : null}
+                                error={!!errors.customerPhone}
+                                helperText={errors?.customerPhone ? errors.customerPhone.message : null}
                             />
                             <FormControlLabel control={<Switch
-                                checked={showAddress}
+                               checked={showAddress}
                                 onChange={setAddress}
                             />} label={'ship my order'}/>
                             {showAddress &&
