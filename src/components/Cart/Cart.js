@@ -39,7 +39,7 @@ const Cart = () => {
                         </div>
                     }
                     {
-                        products.map(item => <CartItem key={item.id} product={item}/>)
+                        products.map(item => <CartItem key={item._id} product={item}/>)
                     }
                     <div className={'remove_all_wrapper'}>
                         {products.length > 0 && !emptyCart &&

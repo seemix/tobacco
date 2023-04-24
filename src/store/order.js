@@ -16,8 +16,7 @@ export const orderSlice = createSlice({
             state.total = state.total + action.payload.price * action.payload.count;
         },
         removeItem(state, action) {
-            state.total -= action.payload.price;
-            state.total -= (action.payload.price * action.payload.count);
+            state.total -= action.payload.price * action.payload.count;
             state.products = state.products.filter(item => item._id !== action.payload._id);
         },
         removeAllItems(state) {
