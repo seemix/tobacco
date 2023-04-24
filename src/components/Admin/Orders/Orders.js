@@ -7,7 +7,7 @@ const Orders = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getAllOrders());
-    }, [])
+    }, [dispatch])
     const { response } = useSelector(state => state.orderStore);
     return (
         <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>

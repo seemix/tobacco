@@ -1,0 +1,13 @@
+.uncompleted {
+    background-color: #e5f3dd;
+}
+.order_top_wrapper {
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+    width: 100%;
+}
+.inside_wrapper {
+    display: flex;
+    align-items: center;
+}
