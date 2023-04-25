@@ -143,7 +143,7 @@ export const categorySlice = createSlice({
                         obj.picture = null
                     }
                 });
-                state.categoryForUpdate.picture = null;
+                state.categoryForUpdate = null;
             })
             .addCase(deleteImage.rejected, (state, action) => {
                 state.status = 'error';
@@ -157,7 +157,8 @@ export const categorySlice = createSlice({
                         obj.name = action.payload.name;
                         obj.picture = action.payload.picture;
                     }
-                })
+                });
+                state.categoryForUpdate = null;
             })
             .addCase(getCategoryById.fulfilled, (state, action) => {
                 state.status = 'fulfilled';

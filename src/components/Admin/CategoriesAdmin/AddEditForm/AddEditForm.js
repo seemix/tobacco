@@ -37,13 +37,14 @@ const AddEditForm = () => {
         const removeImage = () => {
             dispatch(deleteImage(categoryForUpdate.picture));
             setFile(null);
+            setConfirmDelete(false);
         }
         const saveForm = (data) => {
             const formData = new FormData();
             formData.append('name', data.categoryName);
             formData.append('image', file);
             if (categoryForUpdate) {
-                formData.append('id', categoryForUpdate._id);
+                formData.append('_id', categoryForUpdate._id);
                 dispatch(updateCategory(formData));
             } else {
                 dispatch(createCategory(formData));
