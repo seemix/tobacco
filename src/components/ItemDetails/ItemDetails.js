@@ -55,11 +55,11 @@ const ItemDetails = () => {
                             </h3>
                             <div className={'details_wrapper'}>
                                 <div className={'price_wrapper'}>
-                                    {(singleProduct.oldPrice !== 0) &&
+                                    {(singleProduct.oldPrice) &&
                                         <span className={'old_price'}>{singleProduct.oldPrice} {config.CURRENCY}</span>
                                     }
                                     <span
-                                        className={singleProduct.oldPrice === 0 ? 'price standard_price' : 'price'}>
+                                        className={!singleProduct.oldPrice ? 'price standard_price' : 'price'}>
                                         {singleProduct.price} {config.CURRENCY}
                                 </span>
                                 </div>
