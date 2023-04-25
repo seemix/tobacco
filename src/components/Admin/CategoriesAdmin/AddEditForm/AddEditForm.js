@@ -43,7 +43,7 @@ const AddEditForm = () => {
             formData.append('name', data.categoryName);
             formData.append('image', file);
             if (categoryForUpdate) {
-                formData.append('id', categoryForUpdate.id);
+                formData.append('id', categoryForUpdate._id);
                 dispatch(updateCategory(formData));
             } else {
                 dispatch(createCategory(formData));
@@ -87,7 +87,7 @@ const AddEditForm = () => {
                         </div>
                         <div>
                             {categoryForUpdate && categoryForUpdate?.picture &&
-                                <img src={`${config.BACKEND_URL}category/${categoryForUpdate?.picture}`} alt="123"
+                                <img src={`${config.BACKEND_URL}/category/${categoryForUpdate?.picture}`} alt="123"
                                      width={300}/>}
                             {pastedLink && <> <img src={pastedLink} alt={'pasted'} width={300}/>
                             </>}

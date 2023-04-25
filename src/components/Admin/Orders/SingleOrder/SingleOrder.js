@@ -35,7 +35,7 @@ const SingleOrder = ({ order }) => {
         dispatch(setCompleted({ _id: order._id, completed: !checked }));
     }
     return (
-        <div style={{ margin: '20px', width: '700px' }} >
+        <div style={{ margin: '20px', width: '700px' }}>
             <Accordion className={!order.completed ? 'uncompleted' : ''}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon/>}
@@ -71,16 +71,18 @@ const SingleOrder = ({ order }) => {
                             </TableRow>
                         </TableBody>
                     </Table>
-                    <div style={{ marginLeft: 'auto' }}>
-                        Completed
-                        <Switch
-                            checked={checked}
-                            onChange={handleComplete}
-                            inputProps={{ 'aria-label': 'controlled' }}
-                        />
-                    </div>
-                    <div>
-                        {order?.address && <> <LocationOnIcon/> {order.address}</>}
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <div>
+                            {order?.address && <> <LocationOnIcon/> {order.address}</>}
+                        </div>
+                        <div>
+                            Completed
+                            <Switch
+                                checked={checked}
+                                onChange={handleComplete}
+                                inputProps={{ 'aria-label': 'controlled' }}
+                            />
+                        </div>
                     </div>
                 </AccordionDetails>
             </Accordion>

@@ -45,7 +45,6 @@ export const orderSlice = createSlice({
         customerSurname: null,
         customerPhone: null,
         address: null,
-        orders: null
     },
     reducers: {
         addProductToCart(state, action) {
@@ -85,8 +84,9 @@ export const orderSlice = createSlice({
             })
             .addCase(setCompleted.fulfilled, (state, action) => {
                 state.status = 'fulfilled';
-                const index = state.products.findIndex(obj => obj._id === action.payload._id);
-                state.products[index] = { ...state.products[index], completed: action.payload.completed }
+                const index = state.response.orders.findIndex(obj => obj._id === action.payload._id);
+                console.log(index);
+                state.response.orders[index] = { ...state.response.orders[index], completed: action.payload.completed }
             })
     }
 });
