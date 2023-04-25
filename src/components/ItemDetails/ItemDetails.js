@@ -36,7 +36,7 @@ const ItemDetails = () => {
     return (
         <div className={'main_container'}>
             {singleProduct &&
-                <div  style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
+                <div>
                     <div className={'path'}>Products /
                         <Link to={`../../category/${singleProduct.category._id}`}>  {singleProduct.category?.name} </Link>
                         / {singleProduct.name}
