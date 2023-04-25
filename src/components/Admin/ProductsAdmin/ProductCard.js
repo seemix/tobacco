@@ -14,6 +14,7 @@ import {
 } from '../../../store/appearance';
 import ConfirmDeleteProduct from './ConfirmDeleteProduct';
 import { showPicture } from '../../../services/show-picture.service';
+import { config } from '../../../config/config';
 
 const ProductCard = ({ product }) => {
     const dispatch = useDispatch();
@@ -49,7 +50,7 @@ const ProductCard = ({ product }) => {
                 />
                 <div className={'card_content'}>
                     <h4>{product.name}</h4>
-                    <span> <small>{product.oldPrice} Kr.</small> {product.price} Kr.</span>
+                    <span> <small>{product.oldPrice} {config.CURRENCY}</small> {product.price} {config.CURRENCY}</span>
                     <small>
                         {Parser().parse(product.description)}
                     </small>
