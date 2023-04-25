@@ -49,7 +49,7 @@ const ItemDetails = () => {
                             src={img}
                             alt={singleProduct.name}
                         />
-                        <div style={{ width: '450px', padding: '25px' }}>
+                        <div style={{ width: '360px', padding: '20px' }}>
                             <h3>
                                 {singleProduct.name}
                             </h3>
