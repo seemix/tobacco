@@ -12,6 +12,7 @@ import { showCart } from '../../store/appearance';
 import { addProductToCart } from '../../store/order';
 import { config } from '../../config/config';
 import './ItemDetails.css';
+import Box from '@mui/material/Box';
 
 const ItemDetails = () => {
     const [showButton, setShowButton] = useState(false);
@@ -35,15 +36,19 @@ const ItemDetails = () => {
     return (
         <div className={'main_container'}>
             {singleProduct &&
-                <div>
+                <div  style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
                     <div className={'path'}>Products /
                         <Link to={`../../category/${singleProduct.category._id}`}>  {singleProduct.category?.name} </Link>
                         / {singleProduct.name}
                     </div>
+
                     <Card className={'card_details'}>
-                        <div>
-                            <img src={img} width={700} alt="pic"/>
-                        </div>
+                        <Box
+                            className={'image_box'}
+                            component={'img'}
+                            src={img}
+                            alt={singleProduct.name}
+                        />
                         <div style={{ width: '450px', padding: '25px' }}>
                             <h3>
                                 {singleProduct.name}

@@ -41,7 +41,7 @@
     color: rgb(109, 109, 109);
 }
 
-.inside_wrapper {
+.inside_wrapper_cart {
     height: calc(100% - 85px);
 }
 

@@ -14,9 +14,20 @@ export const createOrder = createAsyncThunk(
 
 export const getAllOrders = createAsyncThunk(
     'orderSlice/GetAll',
-    async (_, thunkAPI) => {
+    async (params, thunkAPI) => {
         try {
-            return orderService.getAllOrders();
+            return orderService.getAllOrders(params);
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e);
+        }
+    }
+);
+
+export const setCompleted = createAsyncThunk(
+    'orderSlice/SetCompleted',
+    async (data, thunkAPI) => {
+        try {
+            return orderService.setCompleted(data);
         } catch (e) {
             return thunkAPI.rejectWithValue(e);
         }
@@ -62,7 +73,7 @@ export const orderSlice = createSlice({
             state.total += state.products[index].price;
         }
     },
-    extraReducers: builder =>  {
+    extraReducers: builder => {
         builder
             .addCase(createOrder.fulfilled, (state, action) => {
                 state.status = 'fulfilled';
@@ -71,6 +82,11 @@ export const orderSlice = createSlice({
             })
             .addCase(getAllOrders.fulfilled, (state, action) => {
                 state.response = action.payload;
+            })
+            .addCase(setCompleted.fulfilled, (state, action) => {
+                state.status = 'fulfilled';
+                const index = state.products.findIndex(obj => obj._id === action.payload._id);
+                state.products[index] = { ...state.products[index], completed: action.payload.completed }
             })
     }
 });

@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { InputAdornment, TextField, Button } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import { useDispatch } from 'react-redux';
-import { closeMenu, showHideItem } from '../../store/appearance';
+import { useNavigate } from 'react-router-dom';
 
 const SearchBar = () => {
-    const dispatch = useDispatch();
-    const openSearch = () => {
-        dispatch(closeMenu());
-        dispatch(showHideItem());
+    const [showButton, setShowButton] = useState(false);
+    const [q, setQ] = useState('');
+    const navigate = useNavigate();
+
+    const handleChange = (e) => {
+        if (e.target.value.length >= 3) {
+            setShowButton(true);
+            setQ(e.target.value);
+        }
     }
     return (
         <div className={'search_wrapper'}>
@@ -18,13 +22,18 @@ const SearchBar = () => {
                 type="search"
                 label="Search"
                 size={'small'}
+                name={'q'}
+                onChange={handleChange}
                 placeholder={'type to search'}
                 InputProps={{
                     endAdornment: (
                         <InputAdornment position="end">
-                            <Button onClick={openSearch}>
-                                <SearchIcon/>
-                            </Button>
+                            {showButton && <>
+                                <Button onClick={() => navigate(`search?q=${q}`)}>
+                                    <SearchIcon/>
+                                </Button>
+                            </>
+                            }
                         </InputAdornment>
                     ),
                 }}

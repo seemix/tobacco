@@ -23,9 +23,9 @@ const Category = () => {
                 <div className={'image_overlay'}></div>
                 <h2>{currentCat?.name.toUpperCase()}</h2>
             </div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+            <div className={'items_wrapper'}>
                     {products &&
-                        products.map(item =><ItemCard key={item.id} product={item}/>)
+                        products.map(item =><ItemCard key={item._id} product={item}/>)
                     }
 
             </div>

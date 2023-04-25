@@ -22,11 +22,11 @@ const ItemCard = ({ product }) => {
         } else {
             setShowButton(false);
         }
-    }, [products, product.id]);
+    }, [products, product._id]);
     const img = showPicture(product);
     return (
         <div className={'card_wrapper'}>
-            <Card>
+            <Card style={{height: '410px'}}>
                 <CardMedia
                     className={'gray_scale'}
                     component={'img'}
@@ -36,13 +36,13 @@ const ItemCard = ({ product }) => {
                     image={img}
                 />
                 <div className={'card_content'}>
-                    <h3>{product.name}</h3>
+                    <div style={{minHeight: '3em'}}><h3>{product.name}</h3></div>
                     <div className={'price_wrapper'}>
-                        {(product.oldPrice !== 0) &&
+                        {product.oldPrice  &&
                             <span className={'old_price'}>{product.oldPrice} {config.CURRENCY}</span>
                         }
                         <span
-                            className={product.oldPrice === 0 ? 'price standard_price' : 'price'}>{product.price} {config.CURRENCY}
+                            className={!product.oldPrice ? 'price standard_price' : 'price'}>{product.price} {config.CURRENCY}
                         </span>
                     </div>
                     <Link to={`/product/${product._id}`}>

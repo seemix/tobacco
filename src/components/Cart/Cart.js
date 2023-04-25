@@ -25,7 +25,7 @@ const Cart = () => {
             <div style={{ cursor: 'pointer' }} onClick={() => dispatch(hideCart())}>
                 <CloseIcon fontSize={'large'} className={'close_icon'}/>
             </div>
-            <div className={'inside_wrapper'}>
+            <div className={'inside_wrapper_cart'}>
                 <h3>Shopping cart</h3>
                 <div className={'items_wrapper'}>
                     {

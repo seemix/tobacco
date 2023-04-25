@@ -17,6 +17,7 @@ import ProductsAdmin from './components/Admin/ProductsAdmin/ProductsAdmin';
 import ItemDetails from './components/ItemDetails/ItemDetails';
 import OrderForm from './components/OrderForm/OrderForm';
 import CompleteOrder from './components/OrderForm/CompleteOrder';
+import Search from './components/Search/Search';
 
 const Layout = React.lazy(() => import('./components/Layout/Layout'));
 const AdminLayout = React.lazy(() => import('./components/Admin/AdminLayout'));
@@ -36,6 +37,7 @@ function App() {
                         <Route path={'product/:id'} element={<ItemDetails/>}/>
                         <Route path={'checkout'} element={<OrderForm/>}/>
                         <Route path={'completed'} element={<CompleteOrder/>}/>
+                        <Route path={'search'} element={<Search/>}/>
                     </Route>
                     <Route element={<React.Suspense fallback={<Loader/>}>
                         <AdminLayout/>

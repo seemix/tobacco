@@ -17,8 +17,12 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 
 import { config } from '../../../../config/config';
 import './SingleOrder.css';
+import { useDispatch } from 'react-redux';
+import { setCompleted } from '../../../../store/order';
 
 const SingleOrder = ({ order }) => {
+    const [checked, setChecked] = React.useState(order.completed);
+    const dispatch = useDispatch();
     const date = new Date(order.createdAt).toLocaleDateString('en-US', {
         weekday: 'short',
         month: 'short',
@@ -26,13 +30,15 @@ const SingleOrder = ({ order }) => {
         hour: 'numeric',
         minute: 'numeric'
     });
+    const handleComplete = (e) => {
+        setChecked(e.target.checked);
+        dispatch(setCompleted({ _id: order._id, completed: !checked }));
+    }
     return (
-        <div style={{ margin: '20px' }}>
+        <div style={{ margin: '20px', width: '700px' }} >
             <Accordion className={!order.completed ? 'uncompleted' : ''}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon/>}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
                 >
                     <div className={'order_top_wrapper'}>
                         <div>{date}</div>
@@ -44,7 +50,6 @@ const SingleOrder = ({ order }) => {
                             <PhoneAndroidIcon/>
                             <div>{order.customerPhone}</div>
                         </div>
-
                         <div>{order.shipping && <LocalShippingIcon color={'success'}/>}</div>
                     </div>
                 </AccordionSummary>
@@ -67,7 +72,12 @@ const SingleOrder = ({ order }) => {
                         </TableBody>
                     </Table>
                     <div style={{ marginLeft: 'auto' }}>
-                        Completed<Switch name={'completed'} checked={order.completed}/>
+                        Completed
+                        <Switch
+                            checked={checked}
+                            onChange={handleComplete}
+                            inputProps={{ 'aria-label': 'controlled' }}
+                        />
                     </div>
                     <div>
                         {order?.address && <> <LocationOnIcon/> {order.address}</>}
