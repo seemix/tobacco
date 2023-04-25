@@ -8,10 +8,10 @@ import './Orders.css';
 const Orders = () => {
     const dispatch = useDispatch();
     const params = { paqe: 1 }
-    const handlePage = (event, page) => {
-        params.page = page;
-        dispatch(getAllOrders(params));
-    }
+    // const handlePage = (event, page) => {
+    //     params.page = page;
+    //     dispatch(getAllOrders(params));
+    // }
     useEffect(() => {
         dispatch(getAllOrders(params));
     }, [dispatch])
@@ -23,9 +23,9 @@ const Orders = () => {
                     response.orders.map(order => <SingleOrder key={order._id} order={order}/>)
                 }
             </div>
-            {response.pages && response.pages > 1 &&
-                <Pagination shape={'rounded'} count={response?.pages || 1} onChange={handlePage}/>
-            }
+            {/*{response.pages && response.pages > 1 &&*/}
+            {/*    <Pagination shape={'rounded'} count={response?.pages || 1} onChange={handlePage}/>*/}
+            {/*}*/}
         </div>
     );
 };

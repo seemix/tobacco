@@ -85,7 +85,6 @@ export const orderSlice = createSlice({
             .addCase(setCompleted.fulfilled, (state, action) => {
                 state.status = 'fulfilled';
                 const index = state.response.orders.findIndex(obj => obj._id === action.payload._id);
-                console.log(index);
                 state.response.orders[index] = { ...state.response.orders[index], completed: action.payload.completed }
             })
     }
