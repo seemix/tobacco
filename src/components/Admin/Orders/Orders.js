@@ -23,7 +23,7 @@ const Orders = () => {
                     response.orders.map(order => <SingleOrder key={order._id} order={order}/>)
                 }
             </div>
-            {response.pages > 1 &&
+            {response.pages && response.pages > 1 &&
                 <Pagination shape={'rounded'} count={response?.pages || 1} onChange={handlePage}/>
             }
         </div>
