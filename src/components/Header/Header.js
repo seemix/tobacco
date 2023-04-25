@@ -14,6 +14,7 @@ import CartIcon from './CartIcon';
 import { closeMenu, openMenu, setLanguage, showCart, showHideItem } from '../../store/appearance';
 import { getAllCategories } from '../../store/category';
 import Cart from '../Cart/Cart';
+import { useOutsideClick } from '../../hooks/outside-click';
 
 const Header = () => {
     const { products } = useSelector(state => state.orderStore);
@@ -23,6 +24,10 @@ const Header = () => {
     useEffect(() => {
         dispatch(getAllCategories());
     }, [dispatch]);
+    const handleClickOutside = () => {
+        dispatch(closeMenu());
+    }
+    const menuRef = useOutsideClick(handleClickOutside);
     return (
         <div className={'header_wrapper'}>
             <Backdrop open={cart} onClick={() => dispatch(showCart())}/>
@@ -39,7 +44,7 @@ const Header = () => {
             <div>
                 <img src={logo} alt="logo" className={'logo'}/>
             </div>
-            <nav className={!openedMenu ? 'menu_wrapper' : 'menu_wrapper show_menu'}>
+            <nav className={!openedMenu ? 'menu_wrapper' : 'menu_wrapper show_menu'} ref={menuRef}>
                 <ul>
                     <li><NavLink to={'/'} onClick={() => dispatch(closeMenu())}>Home</NavLink></li>
                     <li><NavLink to={'/about'} onClick={() => dispatch(closeMenu())}>About us</NavLink></li>
