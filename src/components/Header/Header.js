@@ -44,8 +44,8 @@ const Header = () => {
             <div>
                 <img src={logo} alt="logo" className={'logo'}/>
             </div>
-            <nav className={!openedMenu ? 'menu_wrapper' : 'menu_wrapper show_menu'} ref={menuRef}>
-                <ul>
+            <nav className={!openedMenu ? 'menu_wrapper' : 'menu_wrapper show_menu'} >
+                <ul ref={menuRef}>
                     <li><NavLink to={'/'} onClick={() => dispatch(closeMenu())}>Home</NavLink></li>
                     <li><NavLink to={'/about'} onClick={() => dispatch(closeMenu())}>About us</NavLink></li>
                     <li><NavLink to={'/contacts'} onClick={() => dispatch(closeMenu())}>Contacts</NavLink></li>
