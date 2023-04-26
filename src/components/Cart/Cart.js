@@ -56,9 +56,9 @@ const Cart = () => {
             <div className={'bottom_wrapper'}>
                 <div className={'total_wrapper'}>
                     {products.length > 0 &&
-                        <big>
+                        <span className={'total_price'}>
                             Total price is: <span className={'price'}>{total} {config.CURRENCY}</span>
-                        </big>
+                        </span>
                     }
                 </div>
                 <div style={{ margin: '0 auto' }}>

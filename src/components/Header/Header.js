@@ -27,6 +27,7 @@ const Header = () => {
     const handleClickOutside = () => {
         dispatch(closeMenu());
     }
+
     const menuRef = useOutsideClick(handleClickOutside);
     return (
         <div className={'header_wrapper'}>
@@ -82,7 +83,7 @@ const Header = () => {
                         <CartIcon size={2}/>
                     </Badge>
                 </div>
-                <div className={!showElement ? 'hide_element' : 'show_element'}><SearchBar setShow={showElement}/></div>
+                <div  className={!showElement ? 'hide_element' : 'show_element'}><SearchBar setShow={showElement}/></div>
                 <div onClick={() => dispatch(showHideItem())} className={showElement ? 'hide_element' : 'show_element'}>
                     <SearchIcon/>
                 </div>
