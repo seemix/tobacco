@@ -34,6 +34,28 @@ export const saveSlidesOrder = createAsyncThunk(
     }
 );
 
+export const deleteSlide = createAsyncThunk(
+    'sliderStore/DeleteSlide',
+    async (filename, thunkAPI) => {
+        try {
+            return sliderService.deleteSlide(filename);
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e);
+        }
+    }
+);
+
+export const updateSlide = createAsyncThunk(
+    'sliderStore/UpdateSlide',
+    async (data, thunkAPI) => {
+        try {
+            return sliderService.updateSlide(data);
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e);
+        }
+    }
+);
+
 export const sliderSlice = createSlice({
     name: 'sliderSlice',
     initialState: {
@@ -41,6 +63,8 @@ export const sliderSlice = createSlice({
         error: null,
         saveOrderButton: false,
         slideEditModal: false,
+        slideForUpdate: null,
+        slideForDelete: null,
         slides: []
     },
     reducers: {
@@ -54,6 +78,9 @@ export const sliderSlice = createSlice({
         },
         closeSlideEdit(state) {
             state.slideEditModal = false;
+        },
+        setSlideForUpdate(state, action) {
+            state.slideForUpdate = action.payload;
         }
     },
     extraReducers: builder => {
@@ -66,8 +93,34 @@ export const sliderSlice = createSlice({
             .addCase(saveSlidesOrder.fulfilled, state => {
                 state.saveOrderButton = false;
             })
+            .addCase(deleteSlide.fulfilled, (state, action) => {
+                state.status = 'fulfilled';
+                state.error = null;
+                state.slides.forEach(obj => {
+                    if (obj.slide === action.payload) {
+                        obj.slide = null
+                    }
+                });
+                state.slideForUpdate = null;
+            })
+            .addCase(createSlide.fulfilled, (state, action) => {
+                state.status = 'fulfilled';
+                state.error = null;
+                state.slides.push(action.payload);
+            })
+            .addCase(updateSlide.fulfilled, (state, action) => {
+                state.status = 'fulfilled';
+                state.error = null;
+                state.slides.forEach(obj => {
+                    if (obj._id === action.payload._id) {
+                        obj.text = action.payload.text;
+                        obj.slide = action.payload.slide;
+                    }
+                });
+                state.slideForUpdate = null;
+            })
     }
 });
-export const { sliderReorder, openSlideEdit, closeSlideEdit } = sliderSlice.actions;
+export const { sliderReorder, openSlideEdit, setSlideForUpdate, closeSlideEdit } = sliderSlice.actions;
 const sliderStore = sliderSlice.reducer;
 export default sliderStore;

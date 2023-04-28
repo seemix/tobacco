@@ -84,7 +84,6 @@ const AddEditForm = () => {
                                     />
                                 </Button>
                             }
-
                         </div>
                         <div>
                             {categoryForUpdate && categoryForUpdate?.picture &&

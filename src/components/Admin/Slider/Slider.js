@@ -11,6 +11,7 @@ const Slider = () => {
         dispatch(getAllSlides());
     }, []);
     const { slides, saveOrderButton, slideEditModal } = useSelector(state => state.sliderStore);
+    console.log(slides);
     const reOrder = (newOrder) => {
          dispatch(sliderReorder(newOrder));
     };
