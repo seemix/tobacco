@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
@@ -9,13 +9,18 @@ import 'swiper/css/pagination';
 
 import './Slider.css';
 
-import slide1 from './1.webp';
-import slide2 from './2.webp';
-import slide3 from './3.webp';
 // import required modules
 import { Autoplay, EffectFade, Navigation, Pagination } from 'swiper';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllSlides } from '../../store/slider';
+import { config } from '../../config/config';
 
 const Slider = () => {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getAllSlides());
+    }, []);
+    const { slides } = useSelector(state => state.sliderStore);
     return (
         <div className={'slider_container'}>
             <Swiper
@@ -33,15 +38,14 @@ const Slider = () => {
                 className={'slider_container'}
                 loop={true}
             >
-                <SwiperSlide>
-                    <div style={{backgroundImage: `url(${slide1})`}} className={'pic'}></div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div style={{backgroundImage: `url(${slide2})`}} className={'pic'}></div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div style={{backgroundImage: `url(${slide3})`}} className={'pic'}></div>
-                </SwiperSlide>
+                {slides.length > 0 &&
+                    slides.map(slide =>
+                        <SwiperSlide key={slide._id}>
+                            <div style={{ backgroundImage: `url(${config.BACKEND_URL}/slider/${slide.slide})` }}
+                                 className={'pic'}></div>
+                        </SwiperSlide>
+                    )
+                }
             </Swiper>
         </div>
     );

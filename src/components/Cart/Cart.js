@@ -63,8 +63,8 @@ const Cart = () => {
                 </div>
                 <div style={{ margin: '0 auto' }}>
                     {products.length === 0 &&
-                        <Button variant={'contained'} fullWidth onClick={() => dispatch(showCart())}>Back to
-                            shop</Button>
+                        <Button variant={'contained'} fullWidth onClick={() => dispatch(showCart())}>
+                            Back to shop</Button>
                     }
                     {products.length > 0 &&
                         <>
