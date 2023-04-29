@@ -22,6 +22,16 @@ export const getProductById = createAsyncThunk(
         }
     }
 );
+export const getNewProducts = createAsyncThunk(
+    'productSlice/GetNewProducts',
+    async (_, thunkAPI) => {
+        try {
+            return productService.getNewProducts();
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e);
+        }
+    }
+);
 export const createProduct = createAsyncThunk(
     'productSlice/CreateProduct',
     async (data, thunkAPI) => {
@@ -71,6 +81,7 @@ export const productSlice = createSlice({
         status: null,
         error: null,
         products: [],
+        newProducts: [],
         singleProduct: null,
         productForUpdate: null,
         productForDelete: null
@@ -134,6 +145,11 @@ export const productSlice = createSlice({
             })
             .addCase(getProductById.fulfilled, (state, action) => {
                 state.singleProduct = action.payload;
+            })
+            .addCase(getNewProducts.fulfilled, (state, action) => {
+                state.status = 'fulfilled';
+                state.error = null;
+                state.newProducts = action.payload;
             })
     }
 });
