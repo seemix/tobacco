@@ -4,7 +4,7 @@ import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
 import EmailIcon from '@mui/icons-material/Email';
 import TelegramIcon from '@mui/icons-material/Telegram';
 
-import contactImage from '../Slider/1.webp';
+import contactImage from './1.webp';
 import './Contacts.css';
 
 const Contacts = () => {

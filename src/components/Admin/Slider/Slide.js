@@ -5,17 +5,17 @@ import { config } from '../../../config/config';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useDispatch } from 'react-redux';
-import { openSlideEdit, setSlideForUpdate } from '../../../store/slider';
+import { openSlideDelete, openSlideEdit, setSlideForDelete, setSlideForUpdate } from '../../../store/slider';
 
-const Slide = ({slide}) => {
+const Slide = ({ slide }) => {
     const dispatch = useDispatch();
     const slideEdit = (slide) => {
         dispatch(setSlideForUpdate(slide));
         dispatch(openSlideEdit(true));
     }
     const setDelete = () => {
-       // dispatch(setCategoryForDelete(slide));
-       // dispatch(showCategoryDeleteModal());
+        dispatch(setSlideForDelete(slide));
+        dispatch(openSlideDelete());
     }
     return (
         <div className={'single_cat_wrapper'}>
@@ -27,7 +27,7 @@ const Slide = ({slide}) => {
                     <Button onClick={() => slideEdit(slide)}><EditIcon/></Button>
                 </div>
                 <div>
-                    <Button onClick={() => alert()}><DeleteForeverIcon/></Button>
+                    <Button onClick={setDelete}><DeleteForeverIcon/></Button>
                 </div>
             </Card>
         </div>

@@ -36,9 +36,9 @@ export const saveSlidesOrder = createAsyncThunk(
 
 export const deleteSlide = createAsyncThunk(
     'sliderStore/DeleteSlide',
-    async (filename, thunkAPI) => {
+    async (_id, thunkAPI) => {
         try {
-            return sliderService.deleteSlide(filename);
+            return sliderService.deleteSlide(_id);
         } catch (e) {
             return thunkAPI.rejectWithValue(e);
         }
@@ -63,6 +63,7 @@ export const sliderSlice = createSlice({
         error: null,
         saveOrderButton: false,
         slideEditModal: false,
+        slideDeleteModal: false,
         slideForUpdate: null,
         slideForDelete: null,
         slides: []
@@ -76,11 +77,21 @@ export const sliderSlice = createSlice({
         openSlideEdit(state) {
             state.slideEditModal = true;
         },
+        openSlideDelete(state) {
+            state.slideDeleteModal = true;
+        },
+        closeSlideDelete(state) {
+            state.slideDeleteModal = false;
+        },
         closeSlideEdit(state) {
             state.slideEditModal = false;
         },
         setSlideForUpdate(state, action) {
             state.slideForUpdate = action.payload;
+        },
+        setSlideForDelete(state, action) {
+            console.log(action.payload);
+            state.slideForDelete = action.payload;
         }
     },
     extraReducers: builder => {
@@ -93,15 +104,11 @@ export const sliderSlice = createSlice({
             .addCase(saveSlidesOrder.fulfilled, state => {
                 state.saveOrderButton = false;
             })
-            .addCase(deleteSlide.fulfilled, (state, action) => {
+            .addCase(deleteSlide.fulfilled, (state, action)  => {
                 state.status = 'fulfilled';
                 state.error = null;
-                state.slides.forEach(obj => {
-                    if (obj.slide === action.payload) {
-                        obj.slide = null
-                    }
-                });
-                state.slideForUpdate = null;
+                state.slides = state.slides.filter(obj => obj._id !== action.payload);
+                state.slideForDelete = null;
             })
             .addCase(createSlide.fulfilled, (state, action) => {
                 state.status = 'fulfilled';
@@ -121,6 +128,14 @@ export const sliderSlice = createSlice({
             })
     }
 });
-export const { sliderReorder, openSlideEdit, setSlideForUpdate, closeSlideEdit } = sliderSlice.actions;
+export const {
+    sliderReorder,
+    setSlideForDelete,
+    openSlideEdit,
+    setSlideForUpdate,
+    closeSlideEdit,
+    closeSlideDelete,
+    openSlideDelete
+} = sliderSlice.actions;
 const sliderStore = sliderSlice.reducer;
 export default sliderStore;

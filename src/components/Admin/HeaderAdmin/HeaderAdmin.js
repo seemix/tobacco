@@ -25,7 +25,6 @@ const HeaderAdmin = () => {
             </div>
             <nav className={'menu_wrapper'}>
                 <ul>
-                    <li><NavLink to={'/admin/main'}>Main</NavLink></li>
                     <li><NavLink to={'/admin/orders'}>Orders</NavLink></li>
                     <li><NavLink to={'/admin/categories'}>Categories</NavLink></li>
                     <li><a href="#" className={'menu_parent'}>Products <i className={'arrow_right'}></i> </a>
@@ -36,6 +35,8 @@ const HeaderAdmin = () => {
                             }
                         </ul>
                     </li>
+                    <li><NavLink to={'/admin/slider'}>Slider</NavLink></li>
+
                 </ul>
             </nav>
             <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>

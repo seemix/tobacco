@@ -18,7 +18,7 @@ import ItemDetails from './components/ItemDetails/ItemDetails';
 import OrderForm from './components/OrderForm/OrderForm';
 import CompleteOrder from './components/OrderForm/CompleteOrder';
 import Search from './components/Search/Search';
-import MainPageAdmin from './components/Admin/MainPageAdmin';
+import SliderAdmin from './components/Admin/Slider/Slider';
 
 const Layout = React.lazy(() => import('./components/Layout/Layout'));
 const AdminLayout = React.lazy(() => import('./components/Admin/AdminLayout'));
@@ -44,10 +44,11 @@ function App() {
                         <AdminLayout/>
                     </React.Suspense>}>
                         <Route path={'admin'} element={<MainAdmin/>}>
-                            <Route path={'main'} element={<MainPageAdmin/>}/>
+                            <Route path={''} element={<Orders/>}/>
                             <Route path={'orders'} element={<Orders/>}/>
                             <Route path={'categories'} element={<CategoriesAdmin/>}/>
                             <Route path={'category/:id'} element={<ProductsAdmin/>}/>
+                            <Route path={'slider'} element={<SliderAdmin/>}/>
                         </Route>
                     </Route>
                     <Route path={'/login'} element={<Login/>}/>

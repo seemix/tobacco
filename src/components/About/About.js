@@ -2,7 +2,7 @@ import React from 'react';
 
 import './About.css';
 import { Card } from '@mui/material';
-import aboutImage from '../Slider/2.webp'
+import aboutImage from './2.webp'
 
 const About = () => {
     return (

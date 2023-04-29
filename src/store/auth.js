@@ -51,7 +51,6 @@ export const authSlice = createSlice({
         auth: false,
         status: null,
         error: null,
-        //accessToken: null,
         user: {
             id: null,
             login: null
@@ -93,6 +92,7 @@ export const authSlice = createSlice({
             })
             .addCase(logout.pending, state => {
                 state.status = 'loading';
+                state.error = null;
             })
             .addCase(logout.fulfilled, state => {
                 state.auth = false;

@@ -42,7 +42,7 @@ const Slider = () => {
                     slides.map(slide =>
                         <SwiperSlide key={slide._id}>
                             <div style={{ backgroundImage: `url(${config.BACKEND_URL}/slider/${slide.slide})` }}
-                                 className={'pic'}></div>
+                                 className={'pic'}> {slide.text && <div className={'slide_text'}>{slide.text}</div> }</div>
                         </SwiperSlide>
                     )
                 }

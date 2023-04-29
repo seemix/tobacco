@@ -5,13 +5,13 @@ import { getAllSlides, openSlideEdit, saveSlidesOrder, sliderReorder } from '../
 import { Reorder } from 'framer-motion';
 import { Button, Dialog, DialogContent } from '@mui/material';
 import SlideEditForm from './SlideEditForm/SlideEditForm';
-const Slider = () => {
+import ConfirmDeleteSlide from './ConfirmDeleteSlide';
+const SliderAdmin = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getAllSlides());
     }, []);
-    const { slides, saveOrderButton, slideEditModal } = useSelector(state => state.sliderStore);
-    console.log(slides);
+    const { slides, saveOrderButton, slideEditModal, slideDeleteModal } = useSelector(state => state.sliderStore);
     const reOrder = (newOrder) => {
          dispatch(sliderReorder(newOrder));
     };
@@ -19,12 +19,16 @@ const Slider = () => {
         <div>
             <h2>Slider</h2>
             <h2><Button onClick={() => dispatch(openSlideEdit())}>+ Add new slide</Button></h2>
-            <Dialog open={slideEditModal}
-                    maxWidth={'xs'}>
+            <Dialog open={slideEditModal} maxWidth={'xs'}>
                 <DialogContent style={{borderRadius: 0}}>
                     <SlideEditForm/>
                 </DialogContent>
 
+            </Dialog>
+            <Dialog open={slideDeleteModal} maxWidth={'xs'}>
+                <DialogContent>
+                    <ConfirmDeleteSlide/>
+                </DialogContent>
             </Dialog>
             <h2> {saveOrderButton &&
                 <Button onClick={() => dispatch(saveSlidesOrder(slides))} color={'success'}>
@@ -40,4 +44,4 @@ const Slider = () => {
     );
 };
 
-export default Slider;
+export default SliderAdmin;

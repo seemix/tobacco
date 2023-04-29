@@ -11,7 +11,6 @@ const SlideEditForm = () => {
     const dispatch = useDispatch();
     const [pastedLink, setPastedLink] = useState(null);
     const [file, setFile] = useState(null);
-    const [confirmDelete, setConfirmDelete] = useState(false);
     useEffect(() => {
         if (slideForUpdate) setValue('text', slideForUpdate.text);
     }, []);
@@ -20,10 +19,9 @@ const SlideEditForm = () => {
         setFile(event.target.files[0]);
         setPastedLink(URL.createObjectURL(event.target.files[0]));
     }
-    const removeImage = () => {
-        dispatch(null);
+    const removeFile = () => {
         setFile(null);
-        setConfirmDelete(false);
+        setPastedLink(null);
     }
     const closeEdit = () => {
         dispatch(setSlideForUpdate(null));
@@ -32,7 +30,7 @@ const SlideEditForm = () => {
     const saveForm = (data) => {
         const formData = new FormData();
         formData.append('text', data.text);
-        if(file) formData.append('image', file);
+        if (file) formData.append('image', file);
         if (slideForUpdate) {
             formData.append('_id', slideForUpdate._id);
             dispatch(updateSlide(formData));
@@ -53,9 +51,10 @@ const SlideEditForm = () => {
                                fullWidth
                                {...register('text')}
                     />
-                    <div>{!slideForUpdate?.picture &&
+                    <div>{!slideForUpdate && !file &&
                         <Button fullWidth component={'label'}>Upload slide
                             <input type={'file'}
+                                   required
                                    accept={'image/*'}
                                    hidden
                                    {...register('image')}
@@ -71,15 +70,7 @@ const SlideEditForm = () => {
                         </>}
                     </div>
                     {file &&
-                        <Button fullWidth onClick={() => null}>remove</Button>
-                    }
-                    {slideForUpdate && !confirmDelete &&
-                        <Button fullWidth onClick={() => setConfirmDelete(true)}>Delete</Button>
-                    }
-                    {confirmDelete && <>
-                        Confirm deleting picture:
-                        <Button onClick={() => setConfirmDelete(false)}>Cancel</Button>
-                        <Button onClick={removeImage}> Confirm </Button></>
+                        <Button fullWidth onClick={removeFile}>remove</Button>
                     }
                     <DialogActions>
                         <Button variant={'contained'} onClick={closeEdit}>Cancel
