@@ -11,15 +11,23 @@ import logo from './tob2.png'
 import SearchBar from '../SearchBar/SearchBar';
 import SearchIcon from './SearchIcon';
 import CartIcon from './CartIcon';
-import { closeMenu, openMenu, setLanguage, showCart, showHideItem } from '../../store/appearance';
+import {
+    closeMenu,
+    hideSearchBar,
+    openMenu,
+    setLanguage,
+    showCart,
+    showSearchBar
+} from '../../store/appearance';
 import { getAllCategories } from '../../store/category';
 import Cart from '../Cart/Cart';
 import { useOutsideClick } from '../../hooks/outside-click';
+import Loader from '../Loader/Loader';
 
 const Header = () => {
     const { products } = useSelector(state => state.orderStore);
-    const { openedMenu, cart, showElement, language, filteredLang } = useSelector(state => state.appearanceStore);
-    const { categories } = useSelector(state => state.categoryStore);
+    const { openedMenu, cart, showElement, language, filteredLang, searchBar } = useSelector(state => state.appearanceStore);
+    const { categories, status } = useSelector(state => state.categoryStore);
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getAllCategories());
@@ -27,10 +35,14 @@ const Header = () => {
     const handleClickOutside = () => {
         dispatch(closeMenu());
     }
-
+    const searchOutside = () => {
+        if(searchBar) dispatch(hideSearchBar());
+    }
     const menuRef = useOutsideClick(handleClickOutside);
-    return (
+    const searchRef = useOutsideClick(searchOutside);
+       return (
         <div className={'header_wrapper'}>
+            {status === 'loading' && <Loader/>}
             <Backdrop open={cart} onClick={() => dispatch(showCart())}/>
             <div className={'burger_icon'}>
                 {
@@ -83,8 +95,8 @@ const Header = () => {
                         <CartIcon size={2}/>
                     </Badge>
                 </div>
-                <div  className={!showElement ? 'hide_element' : 'show_element'}><SearchBar setShow={showElement}/></div>
-                <div onClick={() => dispatch(showHideItem())} className={showElement ? 'hide_element' : 'show_element'}>
+                <div  className={searchBar ? 'show_element' : 'hide_element'} ref={searchRef}><SearchBar setShow={showElement}/></div>
+                <div onClick={() => dispatch(showSearchBar())} className={!searchBar ? 'show_element' : 'hide_element'} >
                     <SearchIcon/>
                 </div>
             </div>

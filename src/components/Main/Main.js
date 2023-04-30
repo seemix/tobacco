@@ -19,7 +19,7 @@ const Main = () => {
             <Slider/>
             <div className={'content_container'}>
                 <div>
-                    <h2>The newes items</h2>
+                    <h2>The newest products</h2>
                     {/*<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto atque, deserunt*/}
                     {/*    doloribus*/}
                     {/*    eaque, earum eum facilis illum in laudantium minus mollitia nulla rem repudiandae similique unde*/}

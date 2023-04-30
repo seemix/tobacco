@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Parser } from 'html-to-react'
 import { Button, Card } from '@mui/material';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Box from '@mui/material/Box';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getProductById } from '../../store/product';
@@ -12,12 +13,12 @@ import { showCart } from '../../store/appearance';
 import { addProductToCart } from '../../store/order';
 import { config } from '../../config/config';
 import './ItemDetails.css';
-import Box from '@mui/material/Box';
 
 const ItemDetails = () => {
     const [showButton, setShowButton] = useState(false);
     const { id } = useParams();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     useEffect(() => {
         dispatch(getProductById(id));
     }, [dispatch, id]);
@@ -38,7 +39,8 @@ const ItemDetails = () => {
             {singleProduct &&
                 <div>
                     <div className={'path'}>Products /
-                        <Link to={`../../category/${singleProduct.category._id}`}>  {singleProduct.category?.name} </Link>
+                        <Link
+                            to={`../../category/${singleProduct.category._id}`}>  {singleProduct.category?.name} </Link>
                         / {singleProduct.name}
                     </div>
 
@@ -75,7 +77,9 @@ const ItemDetails = () => {
                                 }
                             </div>
                             {Parser().parse(singleProduct.description)}
-
+                            <Button style={{ marginTop: '20px' }} fullWidth
+                                    onClick={() => navigate(`../../category/${singleProduct.category._id}`)}>Back
+                                to {singleProduct.category.name}</Button>
                         </div>
                     </Card>
                 </div>

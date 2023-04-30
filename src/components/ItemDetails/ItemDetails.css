@@ -7,6 +7,7 @@
     flex-wrap: wrap;
     align-items: stretch;
     justify-content: center;
+    margin-bottom: 20px;
 }
 .details_wrapper {
     display: flex;
