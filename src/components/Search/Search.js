@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { search } from '../../store/search';
-import { closeMenu, showHideItem } from '../../store/appearance';
+import { closeMenu, hideSearchBar } from '../../store/appearance';
 import ItemCard from '../ItemCard/ItemCard';
 
 const Search = () => {
@@ -12,7 +12,7 @@ const Search = () => {
     useEffect(() => {
         dispatch(search(q));
         dispatch(closeMenu());
-        dispatch(showHideItem());
+        dispatch(hideSearchBar());
     }, [q, dispatch]);
     const { results } = useSelector(state => state.searchStore);
     return (
