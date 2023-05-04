@@ -84,7 +84,8 @@ export const productSlice = createSlice({
         newProducts: [],
         singleProduct: null,
         productForUpdate: null,
-        productForDelete: null
+        productForDelete: null,
+        selectedPage: null
     },
     reducers: {
         setProductForUpdate(state, action) {
@@ -92,6 +93,9 @@ export const productSlice = createSlice({
         },
         setProductForDelete(state, action) {
             state.productForDelete = action.payload;
+        },
+        setPage(state, action) {
+            state.selectedPage = action.payload;
         }
     },
     extraReducers: builder => {
@@ -153,6 +157,6 @@ export const productSlice = createSlice({
             })
     }
 });
-export const { setProductForUpdate, setProductForDelete } = productSlice.actions;
+export const { setProductForUpdate, setPage, setProductForDelete } = productSlice.actions;
 const productStore = productSlice.reducer;
 export default productStore;

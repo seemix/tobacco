@@ -103,3 +103,9 @@ p {
     flex-wrap: wrap;
     justify-content: center;
 }
+.pagination_wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}

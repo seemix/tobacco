@@ -2,7 +2,7 @@ import React from 'react';
 import {
     Accordion,
     AccordionDetails,
-    AccordionSummary,
+    AccordionSummary, Button,
     Switch,
     Table,
     TableBody,
@@ -18,7 +18,8 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import { config } from '../../../../config/config';
 import './SingleOrder.css';
 import { useDispatch } from 'react-redux';
-import { setCompleted } from '../../../../store/order';
+import { setCompleted, setOrderForDelete } from '../../../../store/order';
+import { showOrderDeleteModal } from '../../../../store/appearance';
 
 const SingleOrder = ({ order }) => {
     const [checked, setChecked] = React.useState(order.completed);
@@ -34,8 +35,12 @@ const SingleOrder = ({ order }) => {
         setChecked(e.target.checked);
         dispatch(setCompleted({ _id: order._id, completed: !checked }));
     }
+    const confirmDeleteOrder = () => {
+        dispatch(showOrderDeleteModal());
+        dispatch(setOrderForDelete(order))
+    }
     return (
-        <div style={{ margin: '20px', width: '700px' }}>
+        <div className={'main_order_wrapper'}>
             <Accordion className={!order.completed ? 'uncompleted' : ''}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon/>}
@@ -75,6 +80,9 @@ const SingleOrder = ({ order }) => {
                         <div>
                             {order?.address && <> <LocationOnIcon/> {order.address}</>}
                         </div>
+                        <div style={{marginTop: '10px'}}>
+                            <Button onClick={confirmDeleteOrder}> Delete order</Button>
+                        </div>
                         <div>
                             Completed
                             <Switch
@@ -83,6 +91,7 @@ const SingleOrder = ({ order }) => {
                                 inputProps={{ 'aria-label': 'controlled' }}
                             />
                         </div>
+
                     </div>
                 </AccordionDetails>
             </Accordion>

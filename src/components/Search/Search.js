@@ -18,10 +18,14 @@ const Search = () => {
     return (
         <div className={'main_container'}>
             <h2>Search results {`"${q}"`}</h2>
-
             <div className={'items_wrapper'}>
                 {results.length > 0 &&
                     results.map(item => <ItemCard key={item._id} product={item}/>)
+                }
+                {results.length === 0 &&
+                    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'left'}}>
+                        <h3>No results found. Try to modify your request </h3>
+                    </div>
                 }
             </div>
         </div>

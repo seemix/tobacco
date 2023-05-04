@@ -13,7 +13,6 @@ const OrderForm = () => {
     const { handleSubmit, register, formState: { errors } } = useForm();
     const { products, total, status } = useSelector(state => state.orderStore);
     const dispatch = useDispatch();
-
     const setAddress = () => {
         setShowAddress(!showAddress);
     }
@@ -30,7 +29,7 @@ const OrderForm = () => {
             {status === 'fulfilled' && <Navigate to={'../completed'}/>}
             <h2>Checkout your order</h2>
             <div className={'checkout_wrap'}>
-                {products.length === 0 && <Navigate to={'/'}/>}
+                {/*{products.length === 0 && <Navigate to={'/'}/>}*/}
                 <div>
                     <Card className={'checkout_card'}>
                         <h3>Your order</h3>

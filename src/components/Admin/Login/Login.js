@@ -87,7 +87,7 @@ const Login = () => {
                             </Grid>
                         </Grid>
                     </Box>
-                    {status === 'error' || error ?  <Alert severity="error">{error}</Alert> : '' }
+                    {status === 'error' && error ?  <Alert severity="error">{error}</Alert> : '' }
                     {auth ?
                         <>
                         <Alert severity={'success'}>Login success!!!</Alert>
