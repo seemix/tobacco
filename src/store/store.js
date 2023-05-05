@@ -6,11 +6,12 @@ import authStore from './auth';
 import orderStore from './order';
 import searchStore from './search';
 import sliderStore from './slider';
+import brandStore from './brand';
 
 export const store = configureStore({
     middleware: getDefaultMiddleware =>
         getDefaultMiddleware({
             serializableCheck: false,
         }),
-    reducer: { appearanceStore, categoryStore, sliderStore, productStore, authStore, orderStore, searchStore }
+    reducer: { appearanceStore, categoryStore, sliderStore, brandStore, productStore, authStore, orderStore, searchStore }
 });

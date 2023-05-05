@@ -3,9 +3,9 @@ import { productService } from '../services/pruduct.service';
 
 export const getProductsByCategory = createAsyncThunk(
     'productSlice/GetByCategory',
-    async (category, thunkAPI) => {
+    async (params, thunkAPI) => {
         try {
-            return productService.getByCategory(category);
+            return productService.getByCategory(params);
         } catch (e) {
             return thunkAPI.rejectWithValue(e);
         }
@@ -85,7 +85,8 @@ export const productSlice = createSlice({
         singleProduct: null,
         productForUpdate: null,
         productForDelete: null,
-        selectedPage: null
+        selectedPage: null,
+        brand: null
     },
     reducers: {
         setProductForUpdate(state, action) {
@@ -96,6 +97,9 @@ export const productSlice = createSlice({
         },
         setPage(state, action) {
             state.selectedPage = action.payload;
+        },
+        setBrand(state, action) {
+            state.brand = action.payload;
         }
     },
     extraReducers: builder => {
@@ -157,6 +161,6 @@ export const productSlice = createSlice({
             })
     }
 });
-export const { setProductForUpdate, setPage, setProductForDelete } = productSlice.actions;
+export const { setProductForUpdate, setPage, setBrand, setProductForDelete } = productSlice.actions;
 const productStore = productSlice.reducer;
 export default productStore;

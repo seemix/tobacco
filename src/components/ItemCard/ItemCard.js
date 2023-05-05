@@ -26,7 +26,7 @@ const ItemCard = ({ product }) => {
     const img = showPicture(product);
     return (
         <div className={'card_wrapper'}>
-            <Card style={{height: '410px'}}>
+            <Card style={{ height: '410px', position: 'relative' }}>
                 <CardMedia
                     className={'gray_scale'}
                     component={'img'}
@@ -35,10 +35,17 @@ const ItemCard = ({ product }) => {
                     height={'180'}
                     image={img}
                 />
+
                 <div className={'card_content'}>
-                    <div style={{minHeight: '3em'}}><h3>{product.name}</h3></div>
+                    {product?.brand?.name &&
+                        <div className={'brand_label'}>
+                            {product.brand.name}
+                        </div>
+                    }
+
+                    <div style={{ minHeight: '3em' }}><h3>{product.name}</h3></div>
                     <div className={'price_wrapper'}>
-                        {product.oldPrice  &&
+                        {product.oldPrice &&
                             <span className={'old_price'}>{product.oldPrice} {config.CURRENCY}</span>
                         }
                         <span
