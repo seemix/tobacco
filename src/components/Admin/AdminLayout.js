@@ -18,7 +18,7 @@ const AdminLayout = () => {
     return (
         <div style={{ marginTop: '80px' }}>
             {status === 'loading' && <Loader/>}
-            {status === 'fulfilled' && auth ? <MainAdmin/> : status && status!== 'loading' && <Navigate to={'/login'}/>}
+            {status === 'fulfilled' && auth ? <MainAdmin/> : status!== 'loading' && <Navigate to={'/login'}/>}
         </div>
     );
 };
