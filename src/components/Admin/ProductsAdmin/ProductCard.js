@@ -51,6 +51,7 @@ const ProductCard = ({ product }) => {
                 <div className={'card_content'}>
                     <h4>{product.name}</h4>
                     <span> <small>{product.oldPrice} {config.CURRENCY}</small> {product.price} {config.CURRENCY}</span>
+                    <h5>{product.brand?.name}</h5>
                     <small>
                         {Parser().parse(product.description)}
                     </small>

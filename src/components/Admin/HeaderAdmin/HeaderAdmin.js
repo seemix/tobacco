@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import logo from '../../Header/tob2.png';
 import { logout } from '../../../store/auth';
 import { getAllCategories } from '../../../store/category';
+import SearchBarAdmin from './SearchBarAdmin';
 
 const HeaderAdmin = () => {
     const { user, auth, status } = useSelector(state => state.authStore);
@@ -36,9 +37,12 @@ const HeaderAdmin = () => {
                         </ul>
                     </li>
                     <li><NavLink to={'/admin/slider'}>Slider</NavLink></li>
-
+                    <li><NavLink to={'/admin/brands'}>Brands</NavLink></li>
                 </ul>
             </nav>
+            <div>
+                <SearchBarAdmin/>
+            </div>
             <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
                 <div>{auth ? user : ''}</div>
                 <Avatar>{user[0]}</Avatar>

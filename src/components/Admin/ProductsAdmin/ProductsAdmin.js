@@ -36,7 +36,7 @@ const ProductsAdmin = () => {
                 <Button onClick={() => dispatch(showProductForm())}>+ Add new product </Button>
             </h2>
             <Dialog
-                maxWidth={'xs'}
+                maxWidth={'md'}
                 open={productFormModal}
                 onClose={() => dispatch(hideProductForm())}
             >

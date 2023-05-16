@@ -124,7 +124,8 @@ export const productSlice = createSlice({
             .addCase(createProduct.fulfilled, (state, action) => {
                 state.status = 'fulfilled';
                 state.error = null;
-                state.products = [action.payload, ...state.products];
+                console.log(state.products.products);
+                state.products.products = [action.payload, ...state.products.products];
             })
             .addCase(createProduct.rejected, (state, action) => {
                 state.status = 'error';
@@ -143,13 +144,13 @@ export const productSlice = createSlice({
             .addCase(updateProduct.fulfilled, (state, action) => {
                 state.status = 'fulfilled';
                 state.error = null;
-                const index = state.products.findIndex(obj => obj._id === action.payload._id);
+                const index = state.products.products.findIndex(obj => obj._id === action.payload._id);
                 if (index !== -1) {
-                    state.products[index] = { ...action.payload };
+                    state.products.products[index] = { ...action.payload };
                 }
             })
             .addCase(deleteProduct.fulfilled, state => {
-                state.products = state.products.filter(item => item._id !== state.productForDelete._id);
+                state.products.products = state.products.products.filter(item => item._id !== state.productForDelete._id);
             })
             .addCase(getProductById.fulfilled, (state, action) => {
                 state.singleProduct = action.payload;

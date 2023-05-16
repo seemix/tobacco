@@ -43,8 +43,7 @@ const SingleOrder = ({ order }) => {
         <div className={'main_order_wrapper'}>
             <Accordion className={!order.completed ? 'uncompleted' : ''}>
                 <AccordionSummary
-                    expandIcon={<ExpandMoreIcon/>}
-                >
+                    expandIcon={<ExpandMoreIcon/>}>
                     <div className={'order_top_wrapper'}>
                         <div>{date}</div>
                         <div className={'inside_wrapper'}>

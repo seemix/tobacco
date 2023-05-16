@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { searchService } from '../services/search.service';
 
 export const search = createAsyncThunk(
-    'searchSlice/Search',
+    'searchSlice/SearchAdmin',
     async (q, thunkAPI) => {
         try {
             return searchService.search(q);

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, DialogActions, FormControlLabel, Radio, RadioGroup, TextField } from '@mui/material';
+import { Button, DialogActions, FormControlLabel, NativeSelect, Radio, RadioGroup, TextField } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -7,6 +7,7 @@ import 'react-quill/dist/quill.snow.css';
 import { hideProductForm } from '../../../store/appearance';
 import { createProduct, deleteImage, setProductForUpdate, updateProduct } from '../../../store/product';
 import { config } from '../../../config/config';
+import { getAllBrands } from '../../../store/brand';
 
 const ProductForm = ({ _id }) => {
     const [value, setValue] = useState('');
@@ -17,6 +18,7 @@ const ProductForm = ({ _id }) => {
 
     const dispatch = useDispatch();
     const { productForUpdate } = useSelector(state => state.productStore);
+    const { allBrands } = useSelector(state => state.brandStore);
     useEffect(() => {
         if (productForUpdate) {
             setValue(productForUpdate.description);
@@ -24,6 +26,10 @@ const ProductForm = ({ _id }) => {
         }
 
     }, [productForUpdate]);
+    useEffect(() => {
+        dispatch(getAllBrands());
+    }, []);
+
     useEffect(() => {
         if (productForUpdate?.pictureLink) setPreview(productForUpdate?.pictureLink)
     }, [])
@@ -61,6 +67,7 @@ const ProductForm = ({ _id }) => {
         formData.append('description', value);
         formData.append('oldPrice', e.target.oldPrice.value);
         formData.append('price', e.target.price.value);
+        formData.append('brand', e.target.brand.value);
         if (picSelect === 'link') formData.append('pictureLink', e.target.pictureLink.value);
         formData.append('image', file);
         if (productForUpdate) {
@@ -76,16 +83,19 @@ const ProductForm = ({ _id }) => {
             <h2>Product Form</h2>
             <form onSubmit={saveForm}>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                    <TextField
-                        defaultValue={productForUpdate?.name}
-                        required
-                        name={'name'}
-                        fullWidth
-                        className={'TextField-without-border-radius'}
-                        label={'Product name'}
-                    />
-                    <ReactQuill theme="snow" value={value} onChange={setValue}/>
+                    <div style={{ display: 'flex' }}>
+                        <TextField
+                            defaultValue={productForUpdate?.name}
+                            required
+                            name={'name'}
+                            fullWidth
+                            className={'TextField-without-border-radius'}
+                            label={'Product name'}
+                        />
+                    </div>
                     <div style={{ margin: '0 auto' }}>
+                        <ReactQuill theme="snow" value={value} onChange={setValue}/>
+
                         <TextField
                             defaultValue={productForUpdate?.oldPrice}
                             name={'oldPrice'}
@@ -101,6 +111,9 @@ const ProductForm = ({ _id }) => {
                             className={'TextField-without-border-radius'}
                             label={'price'}
                         />
+                        <NativeSelect defaultValue={productForUpdate?.brand?._id} name={'brand'}>
+                            {allBrands.map(brand => <option value={brand._id} key={brand._id}>{brand.name}</option>)}
+                        </NativeSelect>
                         {!productForUpdate?.picture && <>
                             <RadioGroup row name={'pic_selector'}
                                         onChange={handleChange}
@@ -123,7 +136,8 @@ const ProductForm = ({ _id }) => {
                         />
                     }
                     {productForUpdate?.picture &&
-                        <img src={`${config.BACKEND_URL}/product/image/${productForUpdate.picture}`} width={350} alt={'pic'}/>
+                        <img src={`${config.BACKEND_URL}/product/image/${productForUpdate.picture}`} width={350}
+                             alt={'pic'}/>
 
                     }
                     {productForUpdate?.picture && !confirmDelete && <>
@@ -148,7 +162,7 @@ const ProductForm = ({ _id }) => {
                         }
                     </div>
                     <div style={{ padding: '0 20px' }}>
-                        {preview && <img src={preview} alt={''} width={350} style={{ margin: '0 auto' }}/>}
+                        {preview && <img src={preview} alt={''} width={250} style={{ margin: '0 auto' }}/>}
                         <DialogActions>
                             <Button onClick={handleClose}>Cancel</Button>
                             <Button type={'submit'}>Save</Button>
