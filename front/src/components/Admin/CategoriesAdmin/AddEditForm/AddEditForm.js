@@ -84,6 +84,7 @@ const AddEditForm = () => {
                                     />
                                 </Button>
                             }
+                            <h4>Recomended image size 1920x270</h4>
                         </div>
                         <div>
                             {categoryForUpdate && categoryForUpdate?.picture &&
